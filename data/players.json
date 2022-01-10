@@ -17,13 +17,13 @@
         },
         {
             "name" : "Briland",
-            "init_mod" : 0,
-            "health" : 10
+            "init_mod" : 3,
+            "health" : 8
         },
         {
             "name" : "Daniel",
-            "init_mod" : 0,
-            "health" : 10
+            "init_mod" : -1,
+            "health" : 13
         }
     ],
     "enemies" : []
