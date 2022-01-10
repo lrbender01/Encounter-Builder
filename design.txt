@@ -1,0 +1,38 @@
+open an empty combat scenario with just the players in it, type 'add <NAME> <init_mod>' to populate
+the encounter
+also have preprogrammed encounters that can be read BUT THAT IS NOT THE DEFAULT BEHAVIOR
+be able to load in custom ones but the default behavior be that you populate it yourself
+goal: design a d&d terminal that can be opened to start a combat simulation
+when you open the program you are greeted with a list of characters ready to roll initiative
+type in commands to:
+add enemies or friendlies, remove characters from combat (including number), add enemies in bulk,
+save and export an encounter, load an encounter from a json
+maybe multithread this using c for multiple concurrent encounters that can be switched between 
+redraw the same grid when a player or enemy is killed, do not cycle the random generation again
+
+Commands:
+load <encounter> - load <encounter>.json in its entirety from encounters/
+save <encounter> - save the current encounter to <encounter>.json in its entirety (including characters)
+                   warn if conflict with naming
+help - show a help screen listing all commands and their usage
+add <monster_name> [quantity] - add that monster to the combat scenario (roll for health), load default init mod
+                                this would require having some kind of csv from the monster manual with init mods, health, etc.
+                                needs some kind of default translation to a string for the name (so must use regex on combatants there)
+add <encounter> - add that encounter and everyone in it to the current encounter pool
+remove <name> - remove that monster from combat entirely (ignore health)
+damage <name> <quantity> - damage that monster or character by a certain amount
+heal <name> <quantity>
+roll <name> <init roll with mod> - allow me to import rolls from the table 
+lock <name> - lock a certain monster to NOT BE REROLLED every round, they always go on the same number
+exit - clean up and exit program (save current encounter for next time booted)
+<enter> - roll for the next round (prompt for tie resolution)
+
+underlying - have some kind of class that can be used to keep track of each combatant's health, init mod, roll, etc.
+             rather than using a strict array
+commands will need to be parsed and matched with regex with thorough testing and edge cases (not enough inputs, invalid inputs, etc.)
+graphic health bars would be fun for characters and monsters
+have headers on the columns to make things clearer
+
+Encounter JSON:
+has "characters" and/or "enemies"
+everyone has fields "name", "init_mod", and "health"

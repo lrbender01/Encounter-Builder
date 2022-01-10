@@ -1,0 +1,30 @@
+{
+    "characters" : [
+        {
+            "name" : "Paul",
+            "init_mod" : 2,
+            "health" : 8
+        },
+        {
+            "name" : "Gabby",
+            "init_mod" : -1,
+            "health" : 12
+        },
+        {
+            "name" : "Lorin",
+            "init_mod" : 0,
+            "health" : 10
+        },
+        {
+            "name" : "Briland",
+            "init_mod" : 0,
+            "health" : 10
+        },
+        {
+            "name" : "Daniel",
+            "init_mod" : 0,
+            "health" : 10
+        }
+    ],
+    "enemies" : []
+}
