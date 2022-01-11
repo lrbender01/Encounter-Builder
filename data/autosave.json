@@ -1,29 +1,39 @@
 {
     "characters": [
         {
-            "name": "Gabby",
-            "init_mod": -1,
-            "health": 12
+            "name": "Paul",
+            "init_mod": 2,
+            "health": 8,
+            "ac": 10,
+            "type": "Player"
         },
         {
-            "name": "Briland",
-            "init_mod": 3,
-            "health": 8
+            "name": "Gabby",
+            "init_mod": -1,
+            "health": 12,
+            "ac": 10,
+            "type": "Player"
         },
         {
             "name": "Lorin",
             "init_mod": 0,
-            "health": 10
+            "health": 10,
+            "ac": 10,
+            "type": "Player"
+        },
+        {
+            "name": "Briland",
+            "init_mod": 3,
+            "health": 8,
+            "ac": 10,
+            "type": "Player"
         },
         {
             "name": "Daniel",
             "init_mod": -1,
-            "health": 13
-        },
-        {
-            "name": "Paul",
-            "init_mod": 2,
-            "health": 8
+            "health": 13,
+            "ac": 10,
+            "type": "Player"
         }
     ],
     "enemies": []
