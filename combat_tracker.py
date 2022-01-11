@@ -2,11 +2,12 @@
 
 import json, os, random, csv, math
 import tabulate, itertools, sys, tty, termios
-import traceback
+import traceback # Debugging traceback.print_exc()
 
-# Keep track of the current players list
+# Players list
 players_list = []
 
+# Combatant class
 class Combatant:
     def __init__(self, name, init, health, ac, e_type):
         self.name = name
@@ -23,22 +24,23 @@ class Combatant:
     def reroll(self):
         self.roll = random.randint(1, 20) + self.init_mod
 
+# _Getkey class
 class _Getkey:
     def __call__(self):
-        fd = sys.stdin.fileno()
-        old_terminal = termios.tcgetattr(fd)
+        file_descriptor = sys.stdin.fileno()
+        terminal_backup = termios.tcgetattr(file_descriptor)
         try:
             tty.setraw(sys.stdin.fileno())
-            ch1 = sys.stdin.read(1)
+            first_char = sys.stdin.read(1)
 
-            if ch1 == '\r':
+            if first_char == '\r':
                 return '\x1b[C'
-
-            ch = sys.stdin.read(2)
+            other_chars = sys.stdin.read(2)
         finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_terminal)
-        return ch1 + ch
+            termios.tcsetattr(file_descriptor, termios.TCSADRAIN, terminal_backup)
+        return first_char + other_chars
 
+# Key reader
 def get_key():
     key = _Getkey()
     while(True):
@@ -50,11 +52,13 @@ def get_key():
     elif k == '\x1b[B':
         return 'down'
     elif k == '\x1b[C':
-        return 'enter' 
-    return 'other'
+        return 'enter'
+    elif k == '\x1b[D':
+        return 'exit'
 
+# General add function
 def add_combatant(c, combatants):
-    add_num = -1
+    c_num = -1
 
     # Iterate through combatants to find match
     for i in combatants:
@@ -66,21 +70,22 @@ def add_combatant(c, combatants):
                 if not i.name[d].isdigit():
                     start = d
 
-            # Check if one in list already has number
+            # Calculate number
             if start != len(i.name) - 1:
                 num = int(i.name[start + 1:]) + 1
-                if num > add_num:
-                    add_num = num
+                if num > c_num:
+                    c_num = num
             else:
-                add_num = 2
+                c_num = 2
 
     # Only include num if name non-unique
-    if add_num > -1:
-        c.name = c.name + f'_{add_num}'
+    if c_num > -1:
+        c.name = c.name + f'_{c_num}'
 
     # Append to combatants list
     combatants.append(c)
 
+# Load encounter from json
 def load_json(file, combatants, db):
     # Default behavior
     try:
@@ -95,18 +100,21 @@ def load_json(file, combatants, db):
                 players_list.append(c['name'])
 
             players_list.sort()
-
             c_matches = []
             e_matches = []
+
+            # Find all matches in db
             for name in db:
                 if c and name.lower().startswith(c['name'].lower()):
                     c_matches.append(name)
                 if e and name.lower().startswith(e['name'].lower()):
                     e_matches.append(name)
+
+            # Sort matches by length
             c_matches.sort(key=len)
             e_matches.sort(key=len)
             
-            if c_matches:
+            if c_matches: # Add from DB
                 name = c_matches[0]
                 health = parse_roll(db[name]['roll'])
                 dex_mod = db[name]['dex_mod']
@@ -114,13 +122,13 @@ def load_json(file, combatants, db):
                 e_type = db[name]['type']
 
                 print(f'database has: {", ".join(c_matches[:3])}...')
-                print(f'adding {name} : {dex_mod} INIT, {health} HP, {ac} AC, {e_type}')
-
                 add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
-            elif c:
+                print(f'added {name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
+            elif c: # Add from fields
                 add_combatant(Combatant(c['name'], c['init_mod'], c['health'], c['ac'], c['type']), combatants)
+                print(f"added {c['name']} : {c['init_mod']} DEX, {c['health']} HP, {c['ac']} AC, {c['type']}")
 
-            if e_matches:
+            if e_matches: # Add from DB
                 name = e_matches[0]
                 health = parse_roll(db[name]['roll'])
                 dex_mod = db[name]['dex_mod']
@@ -128,24 +136,22 @@ def load_json(file, combatants, db):
                 e_type = db[name]['type']
 
                 print(f'database has: {", ".join(e_matches[:3])}...')
-                print(f'adding {name} : {dex_mod} INIT, {health} HP, {ac} AC, {e_type}')
-
                 add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
-            elif e:
+                print(f'added {name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
+            elif e: # Add from fields
                 add_combatant(Combatant(e['name'], e['init_mod'], e['health'], e['ac'], e['type']), combatants)
+                print(f"added {e['name']} : {e['init_mod']} DEX, {e['health']} HP, {e['ac']} AC, {e['type']}")
 
         print(f'{file}.json loaded successfully')
-
-    # Key exception
-    except KeyError:
+    except KeyError: # Key exception
         print(f'{file}.json formatted incorrectly')
         raise KeyError(f'{file}.json is missing a key')
-    
-    # Other exception
-    except:
+    except: # Other exception
         raise Exception(f'opening {file}.json raised an exception')
 
+# Load monster database from csv
 def populate_db(file, db):
+    # Open up file and read fields
     with open(file, newline='') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
         next(reader)
@@ -179,8 +185,12 @@ def populate_db(file, db):
             except: # Throw exception
                 print(f'Error loading in {monster[0]}')
 
+# Draw all combatants in table
 def draw_all(combatants):
+    # Set table columns
     table = [['Name', 'Roll', 'HP', 'INCAP', 'AC', 'DEX', 'Type', 'Lock']]
+
+    # Add each combatant to the table
     for c in combatants:
         if c.init_mod >= 0:
             init = f'+{c.init_mod}'
@@ -192,6 +202,8 @@ def draw_all(combatants):
     
     turn_nums = [*range(len(combatants))]
     turn_nums = list(map(lambda x : x + 1, turn_nums))
+
+    # Draw the table
     print(tabulate.tabulate(
         table,
         headers='firstrow',
@@ -200,6 +212,7 @@ def draw_all(combatants):
         stralign='left'
     ))
 
+# Advance combat round by rerolling
 def advance_round(combatants):
     os.system('clear')
     for c in combatants:
@@ -207,6 +220,7 @@ def advance_round(combatants):
             c.reroll()
     combatants.sort(key=lambda c : c.roll, reverse=True)
 
+# List saved encounters
 def list_encounters():
     try:
         data_path = os.getcwd() + '/data/'
@@ -216,10 +230,11 @@ def list_encounters():
                 print(f)
 
         if len(data_list) == 0:
-            print('no encounter files found')
+            print('no encounters found in /data/')
     except:
-        print('no encounter files found')
+        print('no encounters found in /data/')
 
+# Save encounter to json
 def save_json(file, combatants, forced=False):
     try: # Try saving to json
         data = {"characters": [], "enemies": []}
@@ -243,7 +258,7 @@ def save_json(file, combatants, forced=False):
         # Open the file and check forced
         file_path = os.getcwd() + f'/data/{file}.json'
         if os.path.exists(file_path) and not forced:
-            print(f'{file}.json already exists\nuse \'save <file> -f\' to force')
+            print(f'{file}.json already exists, -f to force')
         else:
             with open(file_path, 'w') as f:
                 json.dump(data, f, indent=4)
@@ -251,6 +266,7 @@ def save_json(file, combatants, forced=False):
     except:
         print(f'{file}.json can\'t be written to')
 
+# Save encoutner
 def save_encounter(fields, combatants):
     try:
         if len(fields) == 3 and fields[2] == '-f':
@@ -260,10 +276,12 @@ def save_encounter(fields, combatants):
     except IndexError:
         print('usage: save <file> [-f]')
 
+# Load encoutner
 def load_encounter(fields, combatants, db):
-    # Create a deep copy of combatants
     combatants_backup = []
     players_backup = []
+
+    # Create a deep copy of combatants and players
     for c in combatants:
         add_combatant(c, combatants_backup)
     for p in players_list:
@@ -291,6 +309,7 @@ def load_encounter(fields, combatants, db):
         players_list.append(p)
     players_list.sort()
 
+# Parse monster health rolls
 def parse_roll(roll_str):
     # Start lists
     nums = []
@@ -337,6 +356,7 @@ def parse_roll(roll_str):
         del_i = del_i + 1
     return sum
 
+# Add combatant to encounter
 def add_to_encounter(fields, combatants, db):
     # Backup players_list
     players_backup = []
@@ -368,23 +388,23 @@ def add_to_encounter(fields, combatants, db):
 
             # Add combatant
             if len(fields) == 3:
-                print(f'adding {fields[2]} {name}(s):')
+                print(f'added {fields[2]} {name}(s), {db[name]["roll"]} HP:')
                 for i in range(int(fields[2])):
                     health = parse_roll(db[name]['roll'])
-                    print(f'{name} : {dex_mod} INIT, {health} HP, {ac} AC, {e_type}')
                     add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
+                    print(f'{name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
             else:
-                print(f'adding {name} : {dex_mod} INIT, {health} HP, {ac} AC, {e_type}')
                 add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
+                print(f'added {name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
         except:
             try: # Try loading from custom
                 if len(fields) == 7:
-                    print(f'adding {fields[6]} {fields[1]}(s) : {fields[2]} INIT, {fields[3]} HP, {fields[4]} AC, {fields[5]}')
+                    print(f'added {fields[6]} {fields[1]}(s) : {fields[2]} DEX, {fields[3]} HP, {fields[4]} AC, {fields[5]}')
                     for i in range(int(fields[6])):
                         add_combatant(Combatant(fields[1], int(fields[2]), int(fields[3]), int(fields[4]), fields[5]), combatants)
                 else:
-                    print(f'adding {fields[1]} : {fields[2]} INIT, {fields[3]} HP, {fields[4]} AC, {fields[5]}')
-                    add_combatant(Combatant(fields[1], int(fields[2]), int(fields[3]), int(fields[4]), fields[5]), combatants)                         
+                    add_combatant(Combatant(fields[1], int(fields[2]), int(fields[3]), int(fields[4]), fields[5]), combatants) 
+                    print(f'added {fields[1]} : {fields[2]} DEX, {fields[3]} HP, {fields[4]} AC, {fields[5]}')                        
             except IndexError:
                 print(f'usage:\nadd from file:\tadd <file>\nadd from db:\tadd <name> [#]\nadd custom:\tadd <name> <dex_mod> <hp> <ac> <type> [#]')
     
@@ -394,10 +414,12 @@ def add_to_encounter(fields, combatants, db):
         players_list.append(p)
     players_list.sort()
 
+# Remove combatant(s) from encounter
 def remove_from_encounter(fields, combatants):
     try:
         if len(fields) == 1:
-            print(f'usage: remove <name>') 
+            print(f'usage: remove <name>')
+            return
         for n in fields[1:]:
             if n == '*':
                 continue
@@ -410,9 +432,12 @@ def remove_from_encounter(fields, combatants):
                     if c.name.lower().startswith(n.lower()):
                         remove_buffer.append(c)
                 else:
-                    if c.name.lower() == n.lower():
+                    if c.name.lower().startswith(n.lower()):
                         remove_buffer.append(c)
                         break
+
+            remove_buffer.sort(key=lambda c : c.name)
+            name = remove_buffer[0].name.split('_')[0]
 
             # Execute removal
             for r in remove_buffer:
@@ -421,15 +446,18 @@ def remove_from_encounter(fields, combatants):
             if not remove_buffer:
                 print(f'{n} cannot be found')
             else:
-                print(f'{len(remove_buffer)} {n}(s) removed successfully')
+                print(f'{len(remove_buffer)} {name}(s) removed successfully')
     except:
+        traceback.print_exc()
         print(f'usage: remove <name>')   
 
+# Save and exit program
 def save_and_exit(combatants):
     save_json('autosave', combatants, True)
     print('exiting...')
     exit(0)
 
+# Search through command history
 def search_history(hist):
     if len(hist) == 0:
         return ''
@@ -441,25 +469,31 @@ def search_history(hist):
     # Loop until selected
     while(True):
         key = get_key()
-        if key == 'up':
+        if key == 'up': # Go back in hist
             location = location - 1
-        elif key == 'down':
+        elif key == 'down': # Go forward in hist
             location = location + 1
-        elif key == 'enter':
+        elif key == 'enter': # Select command from hist
             break
+        elif key == 'exit': # Exit hist without selecting
+            print()
+            return ''
 
         if location >= 0:
             location = -1
         if location < -len(hist):
             location = -len(hist)
 
+        # Show currently selected command
         out = f'\r~$ [HIST] {hist[location]}'
         sys.stdout.write(out.ljust(width))
         sys.stdout.flush()
     
+    # Show and return selected command
     print(f'\n~$ {hist[location]}')
     return hist[location]
 
+# Manually enter all players initiative
 def roll_players(combatants):
     print('order: ' + ', '.join(players_list))
     rolls = input().split(' ')
@@ -473,40 +507,37 @@ def roll_players(combatants):
                 if c.name == p:
                     c.roll = r
 
-def edit_combatant(fields, combatants): # TODO: clean up and type checking
-    try:
+# Manually edit a combatant
+def edit_combatant(fields, combatants):
+    try: # Attempt edit
         found = False
         for c in combatants:
             if c.name.lower() == fields[1].lower():
-                if fields[2].startswith('name'):
-                    c.name = fields[3]
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                elif fields[2].startswith('roll'):
-                    c.roll = int(fields[3])
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                elif fields[2].startswith('hp'):
-                    c.health = int(fields[3])
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                elif fields[2].startswith('ac'):
-                    c.ac = int(fields[3])
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                elif fields[2].startswith('dex'):
-                    c.init_mod = int(fields[3])
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                elif fields[2].startswith('type'):
-                    c.type = fields[3]
-                    print(f'{fields[1]}\'s {fields[2]} updated')
-                else:
-                    print(f'{fields[2]} is not a valid field')
-                    raise Exception('show usage')
                 found = True
+                if fields[2].startswith('name'): # Edit name
+                    c.name = fields[3]
+                elif fields[2].startswith('roll'): # Edit roll
+                    c.roll = int(fields[3])
+                elif fields[2].startswith('hp'): # Edit HP
+                    c.health = int(fields[3])
+                elif fields[2].startswith('ac'): # Edit AC
+                    c.ac = int(fields[3])
+                elif fields[2].startswith('dex'): # Edit dex_mod
+                    c.init_mod = int(fields[3])
+                elif fields[2].startswith('type'): # Edit type
+                    c.type = fields[3]
+                else: # Non-valid field
+                    print(f'{fields[2]} is not a valid field')
+                    raise Exception('invalid field')
+                print(f'{c.name}\'s {fields[2]} updated to {fields[3]}')
         if not found:
-            print(f'cannot find {fields[1]}')
-    except:
+            print(f'{fields[1]} cannot be find')
+    except: # Print edit usage
         print('usage: edit <field> <value>\nfields: name, roll, hp, ac, dex, type')
 
+# Lock combatant initiative
 def lock_combatant(fields, combatants):
-    try:
+    try: # Try locking
         if len(fields) == 1:
             print('usage: lock <name>')
             return
@@ -518,9 +549,10 @@ def lock_combatant(fields, combatants):
                         print(f'{c.name} locked')
                     else:
                         print(f'{c.name} unlocked')
-    except:
+    except: # Wrong usage
         print('usage: lock <name>')
 
+# Damage combatant
 def damage_combatant(fields, combatants, damaging):
     try:
         if len(fields) == 1:
@@ -536,7 +568,9 @@ def damage_combatant(fields, combatants, damaging):
     except:
         print('usage: [damage|heal] <name> <#>')
 
-def print_usage(command):
+# Print help for any command possible
+def print_help(command):
+    # All help text
     usage_dict = {
         'rollall'   :   'rollall\n\treroll all combatant initiatives and reload\n\tusage: rollall',
         'clear'     :   'clear\n\tclear terminal\n\tusage: clear',
@@ -551,20 +585,28 @@ def print_usage(command):
         'heal'      :   'heal\n\theal combatant\n\tusage: heal <name> <#>',
         'roll'      :   'roll\n\troll initiative for all players\n\tusage: roll',
         'lock'      :   'lock\n\tlock initiative for a combatant\n\tusage: lock <name>',
-        'help'      :   'help\n\tshow entire help screen\n\tusage: help [command]',
+        'help'      :   'help\n\tshow entire help screen\n\tusage:\tfull list:\thelp\n\t\tcommand only:\thelp [command]\n\t\tcommand list:\thelp commands',
         'hist'      :   'hist\n\tnavigate through command history\n\tusage: hist',
         'exit'      :   'exit\n\tsave and exit the program\n\tusage: exit',
         'shell'     :   'shell\n\texecute shell commands\n\tusage: shell <command>',
         'bash'      :   'bash\n\tstart a bash subprocess\n\tusage: bash'
     }
+
+    command_list = list(usage_dict.keys())
+    command_list.sort()
+
+    # Select the correct help line
     if command in usage_dict:
         print(f'{usage_dict[command]}')
     elif command == 'all':
-        for key, value in usage_dict.items():
-            print(f'{value}')
+        for command in command_list:
+            print(f'{usage_dict[command]}')
+    elif command == 'commands':
+        print('commands: ' + ', '.join(command_list))
     else:
         print(f'{usage_dict["help"]}')
 
+# Main entrypoint
 def main():
     # Populate database
     monster_db = {}
@@ -586,13 +628,13 @@ def main():
     while(True):
         os.system('clear')
         draw_all(combatants)
-        rerun = ''
+        hist_command = ''
 
         # Command loop
         while(True):
-            if rerun:
-                buffer = rerun
-                rerun = ''
+            if hist_command:
+                buffer = hist_command
+                hist_command = ''
             else:
                 buffer = input('~$ ')
 
@@ -601,63 +643,80 @@ def main():
             if not buffer.startswith('hist'):
                 hist.append(buffer)
 
-            
-            # TODO: look into switch-case mapping
-            # http://net-informations.com/python/iq/switch.htm
-            # https://stackoverflow.com/questions/21962763/using-a-dictionary-as-a-switch-statement-in-python
+            # TODO: sort by type (should be easy)
+            # TODO: search database and print results
+            # TODO: bug adding from file (names already have underscores after (goblins))
+            # should be as easy as parsing off the name while adding from a json
+            # TODO: hist should put the command on the line where it can be edited (might be too hard)
 
-            # TODO: clean up functions and look for inefficiencies (efficient iteration)
-            # TODO: get rid of unnecessary functions
-            # TODO: type checking for all input fields
-
+            # Parse and execute commands
             if buffer == '': # Accept empty command
                 continue
-            elif buffer.startswith('rollall'): # Reroll combat round
+
+            elif buffer.startswith('rollall') or buffer.startswith('reroll'): # Reroll combat round
                 advance_round(combatants)
                 break
+
             elif buffer.startswith('clear'): # Clear screen
                 break
+
             elif buffer.startswith('reload'): # Reload turn order
                 combatants.sort(key=lambda c : c.roll, reverse=True)
                 break
-            elif command_fields[0] == 'list': # List encounter files
+
+            elif buffer.startswith('list'): # List encounter files
                 list_encounters()
-            elif command_fields[0] == 'save': # Save current encounter
+
+            elif buffer.startswith('save'): # Save current encounter
                 save_encounter(command_fields, combatants)
-            elif command_fields[0] == 'load': # Load existing encounter
+
+            elif buffer.startswith('load'): # Load existing encounter
                 load_encounter(command_fields, combatants, monster_db)
-            elif command_fields[0] == 'add': # Add new combatant or encounter
+
+            elif buffer.startswith('add'): # Add new combatant or encounter
                 add_to_encounter(command_fields, combatants, monster_db)
-            elif command_fields[0] == 'remove': # Remove combatant from encounter
+
+            elif buffer.startswith('remove'): # Remove combatant from encounter
                 remove_from_encounter(command_fields, combatants)
-            elif command_fields[0] == 'edit': # Edit combatant fields
+
+            elif buffer.startswith('edit'): # Edit combatant fields
                 edit_combatant(command_fields, combatants)
-            elif command_fields[0] == 'damage': # Damage a combatant
+
+            elif buffer.startswith('damage'): # Damage a combatant
                 damage_combatant(command_fields, combatants, True)
-            elif command_fields[0] == 'heal': # Heal a combatant
+
+            elif buffer.startswith('heal'): # Heal a combatant
                 damage_combatant(command_fields, combatants, False)
-            elif command_fields[0] == 'roll': # Roll for players en masse
+
+            elif buffer.startswith('roll'): # Roll for players en masse
                 roll_players(combatants)
                 combatants.sort(key=lambda c : c.roll, reverse=True)
-            elif command_fields[0] == 'lock': # Lock combatant roll
+
+            elif buffer.startswith('lock'): # Lock combatant roll
                 lock_combatant(command_fields, combatants)
+
             elif buffer.startswith('help'): # Print usage for all commands
                 if len(command_fields) > 1:
-                    print_usage(command_fields[1])
+                    print_help(command_fields[1])
                 else:
-                    print_usage('all')
+                    print_help('all')
+
             elif buffer.startswith('hist'): # View and execute old commands
-                rerun = search_history(hist)
+                hist_command = search_history(hist)
+
             elif buffer.startswith('exit'): # Save and exit
                 save_and_exit(combatants)
+
             elif buffer.startswith('shell'): # Shell subprocess
                 command = buffer[buffer.find('shell') + 5:]
                 if command == '' or command == ' ':
                     print('usage: shell <command>')
                 else:
                     os.system(command)
+
             elif buffer.startswith('bash'): # Bash subprocess
                 os.system('bash')
+
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')
 
