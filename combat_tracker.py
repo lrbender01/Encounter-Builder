@@ -713,7 +713,7 @@ def search_db(fields, db):
         else:
             print('no matches')
     except:
-        print('usage: search <name|cr> <value')
+        print('usage: search <name|cr> <value>')
 
 # Main entrypoint
 def main():
