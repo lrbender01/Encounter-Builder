@@ -60,6 +60,11 @@ def get_key():
 def add_combatant(c, combatants):
     c_num = -1
 
+    name = c.name.split('_')
+    if name[-1].isnumeric():
+        del name[-1]
+        c.name = '_'.join(name)
+
     # Iterate through combatants to find match
     for i in combatants:
         if i.name.startswith(c.name):
@@ -105,9 +110,9 @@ def load_json(file, combatants, db):
 
             # Find all matches in db
             for name in db:
-                if c and name.lower().startswith(c['name'].lower()):
+                if c and name.lower().find(c['name'].lower()) != -1:
                     c_matches.append(name)
-                if e and name.lower().startswith(e['name'].lower()):
+                if e and name.lower().find(e['name'].lower()) != -1:
                     e_matches.append(name)
 
             # Sort matches by length
@@ -175,15 +180,19 @@ def populate_db(file, db):
                 # Get enemy type
                 e_type = monster[2]
 
+                cr = monster[13]
+
                 # Populate DB entry
                 db[monster[0]] = {
                     'roll' : health_roll,
                     'dex_mod' : dex_mod,
                     'ac' : ac,
-                    'type' : e_type
+                    'type' : e_type,
+                    'cr' : cr
                 }
             except: # Throw exception
-                print(f'Error loading in {monster[0]}')
+                print(f'[ERROR] can\'t load in {monster[0]}')
+                input('<enter> to continue')
 
 # Draw all combatants in table
 def draw_all(combatants):
@@ -218,7 +227,7 @@ def advance_round(combatants):
     for c in combatants:
         if not c.locked:
             c.reroll()
-    combatants.sort(key=lambda c : c.roll, reverse=True)
+    combatants.sort(key=lambda c : int(c.roll), reverse=True)
 
 # List saved encounters
 def list_encounters():
@@ -227,7 +236,7 @@ def list_encounters():
         data_list = os.listdir(data_path)
         for f in data_list:
             if '.json' in f:
-                print(f)
+                print(f.split('.')[0])
 
         if len(data_list) == 0:
             print('no encounters found in /data/')
@@ -373,7 +382,7 @@ def add_to_encounter(fields, combatants, db):
 
             matches = []
             for name in db:
-                if name.lower().startswith(fields[1].lower()):
+                if name.lower().find(fields[1].lower()) != -1:
                     matches.append(name)
             matches.sort(key=len)
     
@@ -388,18 +397,19 @@ def add_to_encounter(fields, combatants, db):
 
             # Add combatant
             if len(fields) == 3:
-                print(f'added {fields[2]} {name}(s), {db[name]["roll"]} HP:')
+                print(f'adding {fields[2]} {name}(s), {db[name]["roll"]} HP:')
                 for i in range(int(fields[2])):
                     health = parse_roll(db[name]['roll'])
                     add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
                     print(f'{name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
             else:
+                print(f'adding {name}, {db[name]["roll"]} HP:')
                 add_combatant(Combatant(name, dex_mod, health, ac, e_type), combatants)
                 print(f'added {name} : {dex_mod} DEX, {health} HP, {ac} AC, {e_type}')
         except:
             try: # Try loading from custom
                 if len(fields) == 7:
-                    print(f'added {fields[6]} {fields[1]}(s) : {fields[2]} DEX, {fields[3]} HP, {fields[4]} AC, {fields[5]}')
+                    print(f'adding {fields[6]} {fields[1]}(s) : {fields[2]} DEX, {fields[3]} HP, {fields[4]} AC, {fields[5]}')
                     for i in range(int(fields[6])):
                         add_combatant(Combatant(fields[1], int(fields[2]), int(fields[3]), int(fields[4]), fields[5]), combatants)
                 else:
@@ -448,7 +458,6 @@ def remove_from_encounter(fields, combatants):
             else:
                 print(f'{len(remove_buffer)} {name}(s) removed successfully')
     except:
-        traceback.print_exc()
         print(f'usage: remove <name>')   
 
 # Save and exit program
@@ -458,7 +467,11 @@ def save_and_exit(combatants):
     exit(0)
 
 # Search through command history
-def search_history(hist):
+def search_history(hist, fields):
+    if len(fields) == 2 and fields[1] == 'print':
+        for h in hist:
+            print(f'[HIST] {h}')
+        return ''
     if len(hist) == 0:
         return ''
 
@@ -506,6 +519,12 @@ def roll_players(combatants):
             for c in combatants:
                 if c.name == p:
                     c.roll = r
+    
+    for c in combatants:
+        if c.name in players_list:
+            continue
+        elif not c.locked:
+            c.reroll()
 
 # Manually edit a combatant
 def edit_combatant(fields, combatants):
@@ -533,7 +552,7 @@ def edit_combatant(fields, combatants):
         if not found:
             print(f'{fields[1]} cannot be find')
     except: # Print edit usage
-        print('usage: edit <field> <value>\nfields: name, roll, hp, ac, dex, type')
+        print('usage: edit <name> <field> <value>\nfields: name, roll, hp, ac, dex, type')
 
 # Lock combatant initiative
 def lock_combatant(fields, combatants):
@@ -579,17 +598,19 @@ def print_help(command):
         'save'      :   'save\n\tsave encounter to file\n\tusage: save <file> [-f]',
         'load'      :   'load\n\tload encounter from file\n\tusage: load <file>',
         'add'       :   'add\n\tadd combatants from database, file, or create custom\n\tusage:\tadd from file:\tadd <file>\n\t\tadd from db:\tadd <name> [#]\n\t\tadd custom:\tadd <name> <dex_mod> <hp> <ac> <type> [#]',
-        'remove'    :   'remove\n\tremove combatants from encounter by name\n\tusage: remove <name> [*]',
-        'edit'      :   'edit\n\tedit fields for a combatant\n\tusage: edit <field> <value>\n\tfields: name, roll, hp, ac, dex, type',
+        'remove'    :   'remove\n\tremove combatants from encounter by name, multiple can be combined\n\tusage: remove <name> [*]',
+        'edit'      :   'edit\n\tedit fields for a combatant\n\tusage: edit <name> <field> <value>\n\tfields: name, roll, hp, ac, dex, type',
         'damage'    :   'damage\n\tdamage combatant\n\tusage: damage <name> <#>',
         'heal'      :   'heal\n\theal combatant\n\tusage: heal <name> <#>',
         'roll'      :   'roll\n\troll initiative for all players\n\tusage: roll',
         'lock'      :   'lock\n\tlock initiative for a combatant\n\tusage: lock <name>',
         'help'      :   'help\n\tshow entire help screen\n\tusage:\tfull list:\thelp\n\t\tcommand only:\thelp [command]\n\t\tcommand list:\thelp commands',
-        'hist'      :   'hist\n\tnavigate through command history\n\tusage: hist',
+        'hist'      :   'hist\n\tnavigate through command history\n\tusage: hist [print]',
         'exit'      :   'exit\n\tsave and exit the program\n\tusage: exit',
         'shell'     :   'shell\n\texecute shell commands\n\tusage: shell <command>',
-        'bash'      :   'bash\n\tstart a bash subprocess\n\tusage: bash'
+        'bash'      :   'bash\n\tstart a bash subprocess\n\tusage: bash',
+        'sort'      :   'sort\n\tsort all combatants according to field\n\tusage: sort <name|roll|ac|type>',
+        'search'    :   'search\n\tsearch database by name or cr, multiple can be combined\n\tusage: search <name|cr> <value>'
     }
 
     command_list = list(usage_dict.keys())
@@ -605,6 +626,94 @@ def print_help(command):
         print('commands: ' + ', '.join(command_list))
     else:
         print(f'{usage_dict["help"]}')
+
+# Sort combatants according to field given
+def sort_combatants(fields, combatants):
+    try:
+        if len(fields) != 2:
+            raise Exception('improper usage')
+
+        if fields[1].lower() == 'name':
+            combatants.sort(key=lambda c : c.name)
+        elif fields[1].lower() == 'roll':
+            combatants.sort(key=lambda c : int(c.roll), reverse=True)
+        elif fields[1].lower() == 'ac':
+            combatants.sort(key=lambda c : int(c.ac), reverse=True)
+        elif fields[1].lower() == 'type':
+            combatants.sort(key=lambda c : c.type)
+        else:
+            print(f'{fields[1]} is not a recognized field')
+    except:
+        print('usage: sort <name|roll|ac|type')
+
+# Query db and show results in table
+def search_db(fields, db):
+    try:
+        if len(fields) < 3:
+            raise Exception('improper usage')
+
+        matches = []
+        remove_buffer = []
+        skip = False
+        for i in range(len(fields)):
+            if skip:
+                skip = False
+                continue
+
+            f = fields[i]
+
+            if len(matches) != 0:
+                if f.lower() == 'name':
+                    for name,cr in matches:
+                        if not name.lower().find(fields[i + 1].lower())  != -1:
+                            remove_buffer.append((name, cr))
+                            skip = True
+                elif f.lower() == 'cr':
+                    for name,cr in matches:
+                        if cr != fields[i + 1]:
+                            remove_buffer.append((name, cr))
+                            skip = True
+                for e in remove_buffer:
+                    matches.remove(e)
+            else:
+                if f.lower() == 'name':
+                    for name in db:
+                        if name.lower().find(fields[i + 1].lower())  != -1:
+                            matches.append((name, db[name]['cr']))
+                            skip = True
+                elif f.lower() == 'cr':
+                    for name in db:
+                        if db[name]['cr'] == fields[i + 1]:
+                            matches.append((name, db[name]['cr']))
+                            skip = True
+
+        matches.sort(key = lambda m : float(m[1]))
+
+        # Print only if matches found
+        if len(matches) != 0:
+            # Set table columns
+            table = [['Name', 'Health', 'AC', 'DEX', 'Type', 'CR']]
+            
+            # Add each match to the table
+            for m in matches:
+                c = db[m[0]]
+                if c['dex_mod'] >= 0:
+                    init = f'+{c["dex_mod"]}'
+                else:
+                    init = c['dex_mod']
+                table.append([m[0], c['roll'], c['ac'], init, c['type'], c['cr']])
+
+            # Draw the table
+            print(tabulate.tabulate(
+                table,
+                headers='firstrow',
+                tablefmt='pretty',
+                stralign='left'
+            ))
+        else:
+            print('no matches')
+    except:
+        print('usage: search <name|cr> <value')
 
 # Main entrypoint
 def main():
@@ -643,12 +752,6 @@ def main():
             if not buffer.startswith('hist'):
                 hist.append(buffer)
 
-            # TODO: sort by type (should be easy)
-            # TODO: search database and print results
-            # TODO: bug adding from file (names already have underscores after (goblins))
-            # should be as easy as parsing off the name while adding from a json
-            # TODO: hist should put the command on the line where it can be edited (might be too hard)
-
             # Parse and execute commands
             if buffer == '': # Accept empty command
                 continue
@@ -657,11 +760,11 @@ def main():
                 advance_round(combatants)
                 break
 
-            elif buffer.startswith('clear'): # Clear screen
+            elif buffer.startswith('clear') or buffer.startswith('refresh'): # Clear screen
                 break
 
             elif buffer.startswith('reload'): # Reload turn order
-                combatants.sort(key=lambda c : c.roll, reverse=True)
+                combatants.sort(key=lambda c : int(c.roll), reverse=True)
                 break
 
             elif buffer.startswith('list'): # List encounter files
@@ -690,7 +793,7 @@ def main():
 
             elif buffer.startswith('roll'): # Roll for players en masse
                 roll_players(combatants)
-                combatants.sort(key=lambda c : c.roll, reverse=True)
+                combatants.sort(key=lambda c : int(c.roll), reverse=True)
 
             elif buffer.startswith('lock'): # Lock combatant roll
                 lock_combatant(command_fields, combatants)
@@ -702,7 +805,7 @@ def main():
                     print_help('all')
 
             elif buffer.startswith('hist'): # View and execute old commands
-                hist_command = search_history(hist)
+                hist_command = search_history(hist, command_fields)
 
             elif buffer.startswith('exit'): # Save and exit
                 save_and_exit(combatants)
@@ -716,6 +819,12 @@ def main():
 
             elif buffer.startswith('bash'): # Bash subprocess
                 os.system('bash')
+
+            elif buffer.startswith('sort'): # Sort combatants
+                sort_combatants(command_fields, combatants)
+
+            elif buffer.startswith('search'):
+                search_db(command_fields, monster_db)
 
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')

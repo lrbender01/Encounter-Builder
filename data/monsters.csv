@@ -20,10 +20,10 @@ Abyssal_Wretch,M,Fiend,Demon,CE,11,18 (4d8),9,12,11,5,8,5,0.25,2
 Accursed_Defiler,M,Undead,,NE,12,75 (10d8+30),19,14,17,6,15,14,4,2
 Acererak,M,Undead,,NE,21 (natural),285 (30d8+150),13,16,20,27,21,20,23,7
 Acid_Ant,S,Monstrosity,,,13 (natural),13 (3d6+3),8,13,12,1,7,3,0.25,2
-"Acid_Elemental,_Huge",H,Elemental,,N,15,103 (9d12+45),22,16,20,6,11,11,9,4
-"Acid_Elemental,_Large",L,Elemental,,N,15,94 (9d10+45),22,16,20,6,11,11,7,3
-"Acid_Elemental,_Medium",M,Elemental,,N,13,68 (8d8+32),21,16,19,6,11,11,5,3
-"Acid_Elemental,_Small",S,Elemental,,N,12,60 (8d6+32),15,16,19,6,11,11,3,2
+Huge_Acid_Elemental,H,Elemental,,N,15,103 (9d12+45),22,16,20,6,11,11,9,4
+Large_Acid_Elemental,L,Elemental,,N,15,94 (9d10+45),22,16,20,6,11,11,7,3
+Medium_Acid_Elemental,M,Elemental,,N,13,68 (8d8+32),21,16,19,6,11,11,5,3
+Small_Acid_Elemental,S,Elemental,,N,12,60 (8d6+32),15,16,19,6,11,11,3,2
 Acidsap_Gympie,G,Plant,,,22 (natural),370 (19d20+171),17,1,28,5,16,5,15,5
 Acolyte,M,Humanoid,,,10,9 (2d8),10,10,10,10,14,11,0.25,2
 Adamant_Diligence,H,Celestial,,NG,23 (natural),406 (28d12+224),14,30,26,20,25,22,28,8
@@ -183,7 +183,7 @@ Angel_of_Judgment,H,Celestial,Angel,N,19 (natural),229 (17d12+119),23,18,25,22,2
 Angelic_Enforcer,L,Celestial,Angel,LG,18 (natural),152 (16d10+64),22,18,18,18,20,20,12,4
 Angler_Worm,H,Monstrosity,,,14 (natural),133 (14d12+42),14,5,16,3,14,1,4,2
 Animated_Armor,M,Construct,,,18 (natural),33 (6d8+6),14,11,13,1,3,1,1,2
-"Animated_Armor,_Unfinished",M,Construct,,,18 (natural),33 (6d8+6),14,11,13,1,3,1,2,2
+Unfinished_Animated_Armor,M,Construct,,,18 (natural),33 (6d8+6),14,11,13,1,3,1,2,2
 Animated_Bearskin_Rug,L,Construct,,,13 (natural),65 (10d10+10),18,13,12,1,3,1,4,2
 Animated_Breath,L,Elemental,,NE,15 (natural),95 (10d10+40),19,11,18,6,10,5,6,3
 Animated_Broom,S,Construct,,,15 (natural),17 (5d6),10,17,10,1,5,1,0.25,2
@@ -235,7 +235,7 @@ Archon_of_Falling_Stars,M,Celestial,Archon,LG,18 (plate),144 (17d8+68),20,15,19,
 Archon_of_Redemption,L,Celestial,Archon,LN,17 (natural),136 (16d8+64),18,18,18,17,20,20,10,4
 Archon_of_the_Triumvirate,M,Celestial,Archon,LN,18 (plate),144 (17d8+68),20,15,19,15,21,18,14,5
 Arclight_Phoenix,M,Elemental,,CN,16,142 (19d8+57),15,22,17,5,12,7,12,4
-"Argenta,_Goddess_of_Healing",G,Celestial,,NG,24 (natural),656 (32d20+320),30,10,30,26,30,24,30,9
+Argenta_Goddess_of_Healing,G,Celestial,,NG,24 (natural),656 (32d20+320),30,10,30,26,30,24,30,9
 Aridni,S,Fey,,NE,15,82 (15d6+30),9,21,14,12,11,16,5,3
 Arkhan_the_Cruel,M,Humanoid,Dragonborn,LE,"23 (obsidian flint dragon plate, shield)",221 (26d8+104),20,12,18,10,10,18,16,5
 Arkoan_Hoplite,M,Humanoid,,,18 (breastplate and shield),52 (8d8+16),16,16,14,11,14,13,3,2
@@ -338,8 +338,8 @@ Barong,L,Celestial,,LG,20 (natural),225 (18d10+140),25,20,25,18,23,22,17,6
 Barrow_Wight,M,Undead,,CE,14 (studded Leather),45 (6d8+18),16,14,16,10,13,15,3,2
 Basilisk,M,Monstrosity,,,15 (natural),52 (8d8+16),16,8,15,2,8,7,3,2
 Basilisk_Zombie,M,Undead,,NE,12 (natural),52 (8d8+16),16,8,15,2,8,7,3,2
-"Basilisk,_Crimson",M,Monstrosity,,,13 (natural),60 (8d8+24),16,10,16,2,12,10,3,2
-"Basilisk,_Greater",L,Monstrosity,,NE,16 (natural),95 (10d10+40),19,8,18,6,10,7,5,3
+Crimson_Basilisk,M,Monstrosity,,,13 (natural),60 (8d8+24),16,10,16,2,12,10,3,2
+Greater_Basilisk,L,Monstrosity,,NE,16 (natural),95 (10d10+40),19,8,18,6,10,7,5,3
 Bastet_Temple_Cat,S,Monstrosity,,CN,14,40 (9d6+9),8,19,12,12,16,18,1,2
 Bastian_Thermandar,M,Humanoid,fire genasi,NE,12 (15 with mage armor),78 (12d8+24),12,14,15,11,9,18,8,3
 Bat,T,Beast,,,12,1 (1d4-1),2,15,8,2,12,4,0,2
@@ -356,7 +356,7 @@ Bearfolk,M,Humanoid,Bearfolk,CG,14 (hide),45 (6d8+18),19,14,16,8,12,9,3,2
 Bearfolk_Chieftan,M,Humanoid,Bearfolk,CG,"17 (chain shirt, shield)",130 (20d8+40),21,14,16,9,14,12,6,3
 Bearing_Golem,M,Construct,,,16 (natural),75 (10d8+30),9,18,16,8,12,3,6,3
 Bearmit_Crab,L,Monstrosity,,,14 (natural),59 (7d10+21),18,13,16,4,13,6,2,2
-"Beaver,_Prehistoric",L,Beast,,,15 (natural),57 (7d8+21),20,12,17,3,11,5,3,2
+Prehistoric_Beaver,L,Beast,,,15 (natural),57 (7d8+21),20,12,17,3,11,5,3,2
 Bedlam,L,Aberration,,CN,17 (natural),112 (15d10+30),17,20,15,15,15,12,8,3
 Beetlor,L,Monstrosity,,N,16 (natural),60 (8d8+24),22,18,17,10,10,8,5,3
 Beezerker,M,Humanoid,Soveign Swarm,LE,19 (chitin),221 (26d8+104),23,14,18,9,8,19,13,5
@@ -471,8 +471,8 @@ Bone_Swarm,L,Undead,(Swarm of Tiny),CE,17 (natural),198 (36d10),22,18,10,9,15,20
 Bone_Welk,L,Monstrosity,,,12 (natural),27 (5d10),10,5,11,6,9,3,0.25,2
 Boneclaw,L,Undead,,CE,16 (natural),127 (17d10+34),19,16,15,13,15,9,12,4
 Boneless,M,Undead,,LE,12,26 (4d8+8),16,14,15,1,10,1,1,2
-"Boneneedle,_Greater",M,Beast,,,13,31 (7d8),8,16,11,1,12,3,1,2
-"Boneneedle,_Lesser",S,Beast,,,12,13 (3d8),5,14,10,1,10,3,0.25,2
+Greater_Boneneedle,M,Beast,,,13,31 (7d8),8,16,11,1,12,3,1,2
+Lesser_Boneneedle,S,Beast,,,12,13 (3d8),5,14,10,1,10,3,0.25,2
 Bonespitter,G,Monstrosity,,,17 (natural),217 (14d20+70),26,7,21,3,10,5,13,5
 Bonesucker,L,Aberration,,NE,15 (natural),68 (8d10+24),18,13,17,10,12,13,4,2
 Bookkeeper,T,Construct,,,12,5 (2d4),8,14,10,6,8,4,0.125,2
@@ -568,7 +568,7 @@ Carrionette,S,Construct,,NE,15 (natural),27 (6d6+6),10,15,12,8,14,14,1,2
 Caryatid_Column,M,Construct,,,14 (natural),45 (6d8+18),16,14,16,2,11,1,2,2
 Cat,T,Beast,,,12,2 (1d4),3,15,10,3,12,7,0,2
 Cat_Prince,M,Humanoid,"Human, Shapechanger",N,15,105 (14d8+42),14,20,16,12,18,16,9,4
-"Cat,_Feral_Undead",S,Undead,,CE,12,3 (1d6),4,15,11,3,12,6,0.125,2
+Feral_Undead_Cat,S,Undead,,CE,12,3 (1d6),4,15,11,3,12,6,0.125,2
 Category_1_Krasis,M,Monstrosity,,,15 (natural),19 (3d8+6),16,15,14,2,13,8,1,2
 Category_2_Krasis,L,Monstrosity,,,15 (natural),136 (16d10+48),18,14,16,2,13,8,6,3
 Category_3_Krasis,H,Monstrosity,,,16 (natural),287 (25d12+125),23,12,21,2,13,8,16,5
@@ -672,7 +672,7 @@ Clockwork_Archon,G,Construct,,,18 (natural),201 (13d20+65),24,9,20,7,10,10,13,5
 Clockwork_Assassin,M,Construct,,,16 (natural),99 (18d8+18),14,17,12,12,12,7,6,3
 Clockwork_Beetle,T,Construct,,,14 (natural),15 (6d4),8,16,10,4,12,7,0.5,2
 Clockwork_Beetle_Swarm,L,Construct,(Swarm of Tiny),N,14 (natural),52 (8d10+8),8,16,12,4,12,7,3,2
-"Clockwork_Dragon,_One-Headed",L,Construct,,,16 (natural),178 (17d10+85),22,10,20,10,10,1,8,3
+One-Headed_Clockwork_Dragon,L,Construct,,,16 (natural),178 (17d10+85),22,10,20,10,10,1,8,3
 Clockwork_Hound,M,Construct,,,12 (natural),71 (11d8+22),16,15,14,1,10,1,2,2
 Clockwork_Huntsman,M,Construct,,,14,110 (20d8+20),17,14,12,4,10,1,3,2
 Clockwork_Leech,M,Construct,,N,13 (natural),45 (6d8+18),14,12,17,3,10,7,1,2
@@ -734,7 +734,7 @@ Couatl,M,Celestial,,LG,19 (natural),97 (13d8+39),16,20,17,18,20,18,4,2
 Cougar,M,Beast,,,12,13 (3d8),14,15,10,3,14,7,0.25,2
 Counterflux_Blastseeker,M,Humanoid,,CN,13 (16 with mage armor),39 (6d8+12),13,16,15,18,11,14,2,2
 Court_Jester,M,Humanoid,,,16 (studded leather),45 (10d8),12,18,11,12,14,16,5,3
-"Cow_(Ox,_Rothe,_Stench_Kow)",L,Beast,,,10,15 (2d10+4),18,10,14,2,10,4,0.25,2
+Cow,L,Beast,,,10,15 (2d10+4),18,10,14,2,10,4,0.25,2
 Crab,T,Beast,,,11 (natural),2 (1d4),2,11,10,1,8,2,0,2
 Crab_Folk,L,Giant,,N,16 (natural),68 (8d10+24),19,10,17,7,9,9,3,2
 Crabman,L,Monstrosity,,N,13 (natural),37 (5d10+10),16,11,15,10,10,8,2,2
@@ -1010,7 +1010,7 @@ Druid,M,Humanoid,,,11 (16 with barkskin),27 (5d8+5),10,12,13,12,15,11,2,2
 Druid_of_the_Old_Ways,M,Humanoid,,CN,14 (hide),90 (12d8+36),11,15,16,10,20,14,7,3
 Druid_of_the_Undercity,M,Humanoid,,,12 (16 with barkskin),65 (10d8+20),12,14,15,12,16,8,6,3
 Dryad,M,Fey,,N,11 (16 with barkskin),22 (5d8),10,12,11,14,15,18,1,2
-"Dryad,_Duskthorn",M,Fey,,CE,17 (natural),77 (14d8+14),10,20,13,14,15,24,3,2
+Duskthorn_Dryad,M,Fey,,CE,17 (natural),77 (14d8+14),10,20,13,14,15,24,3,2
 Duck_of_M_Things,T,Construct,,,13,21 (6d4+6),3,16,12,5,9,1,2,2
 Duende,S,Fey,,CG,15,1 (1d4-1),2,16,8,12,14,12,0.25,2
 Duergar,M,Humanoid,Dwarf,LE,"16 (scale, shield)",26 (4d8+8),14,11,14,11,10,9,1,2
@@ -1099,18 +1099,18 @@ Elemental_Locus,G,Elemental,,N,16 (natural),290 (20d20+80),28,1,18,10,11,11,17,6
 Elephant,H,Beast,,,12 (natural),76 (8d12+24),22,9,17,3,11,6,4,2
 Elf_Ambassador,M,Humanoid,Elf,CG,11 (16 with barkskin),44 (8d8+8),14,12,13,13,16,16,3,2
 Elf-marked_Human,M,Humanoid,Half-Elf,,12,22 (5d8),10,14,11,14,12,13,0.5,2
-"Elf,_Alchemist_Archer",M,Humanoid,Elf,,17 (studded leather),135 (18d8+54),11,20,16,18,14,10,10,4
-"Elf,_Deathsworn",M,Humanoid,Elf,CN,16 (studded leather),82 (15d8+15),14,19,12,11,13,14,6,3
-"Elf,_Enchanter",M,Humanoid,Elf,,12 (15 with mage armor),58 (13d8),10,14,10,19,13,19,7,3
-"Elf,_Servant_of_the_Vine",M,Humanoid,Elf,CN,16 (breastplate),72 (16d8),10,15,11,13,16,14,6,3
-"Elf,_Shadow_Fey",M,Humanoid,Elf,LE,15 (chain shirt),31 (7d8),10,14,10,11,11,13,0.25,2
-"Elf,_Shadow_Fey_Ambassador",M,Humanoid,Elf,LE,16 (studded leather),161 (19d8+76),13,18,18,16,16,20,9,4
-"Elf,_Shadow_Fey_Duelist",M,Humanoid,Elf,LE,17 (studded leather),117 (18d8+36),13,20,14,13,12,16,6,3
-"Elf,_Shadow_Fey_Enchantress",M,Humanoid,Elf,LE,16 (breastplate),123 (19d8+38),10,15,14,12,17,18,7,3
-"Elf,_Shadow_Fey_Forest_Hunter",M,Humanoid,Elf,LE,15 (chain shirt),104 (19d8+19),12,18,12,11,12,16,5,3
-"Elf,_Shadow_Fey_Guardian",L,Humanoid,Elf,NE,15 (chain shirt),110 (13d10+39),18,14,16,6,14,8,4,2
-"Elf,_Shadow_Fey_Knight_of_the_Road",M,Humanoid,Elf,LE,16 (breastplate),117 (18d8+36),14,18,14,14,12,16,5,3
-"Elf,_Shadow_Fey_Poisoner",M,Humanoid,Elf,N,16 (studded leather),112 (15d8+45),11,18,16,13,11,14,11,4
+Elf_Alchemist_Archer,M,Humanoid,Elf,,17 (studded leather),135 (18d8+54),11,20,16,18,14,10,10,4
+Elf_Deathsworn,M,Humanoid,Elf,CN,16 (studded leather),82 (15d8+15),14,19,12,11,13,14,6,3
+Elf_Enchanter,M,Humanoid,Elf,,12 (15 with mage armor),58 (13d8),10,14,10,19,13,19,7,3
+Elf_Servant_of_the_Vine,M,Humanoid,Elf,CN,16 (breastplate),72 (16d8),10,15,11,13,16,14,6,3
+Elf_Shadow_Fey,M,Humanoid,Elf,LE,15 (chain shirt),31 (7d8),10,14,10,11,11,13,0.25,2
+Elf_Shadow_Fey_Ambassador,M,Humanoid,Elf,LE,16 (studded leather),161 (19d8+76),13,18,18,16,16,20,9,4
+Elf_Shadow_Fey_Duelist,M,Humanoid,Elf,LE,17 (studded leather),117 (18d8+36),13,20,14,13,12,16,6,3
+Elf_Shadow_Fey_Enchantress,M,Humanoid,Elf,LE,16 (breastplate),123 (19d8+38),10,15,14,12,17,18,7,3
+Elf_Shadow_Fey_Forest_Hunter,M,Humanoid,Elf,LE,15 (chain shirt),104 (19d8+19),12,18,12,11,12,16,5,3
+Elf_Shadow_Fey_Guardian,L,Humanoid,Elf,NE,15 (chain shirt),110 (13d10+39),18,14,16,6,14,8,4,2
+Elf_Shadow_Fey_Knight_of_the_Road,M,Humanoid,Elf,LE,16 (breastplate),117 (18d8+36),14,18,14,14,12,16,5,3
+Elf_Shadow_Fey_Poisoner,M,Humanoid,Elf,N,16 (studded leather),112 (15d8+45),11,18,16,13,11,14,11,4
 Elite_Drider,L,Monstrosity,,CE,20 (natural),133 (14d10+56),18,16,18,14,16,14,11,4
 Elite_Guard,M,Humanoid,,,16 (chainmail),39 (6d8+12),16,14,14,12,11,10,2,2
 Elite_Kobold,S,Humanoid,Kobold,LN,14 (leather),26 (4d8+8),10,17,14,12,14,10,1,2
@@ -1139,7 +1139,7 @@ Eonic_Savant,M,Humanoid,Human,N,13 (16 with mage armor),115 (16d8+51),9,16,16,20
 Erina_Defender,S,Humanoid,Erina,N,15 (chain shirt),44 (8d6+16),11,14,14,13,12,11,1,2
 Erina_Scrounger,S,Humanoid,Erina,N,12 (leather),22 (4d6+8),9,12,14,13,10,11,0.25,2
 Erinyes,M,Fiend,Devil,LE,18 (plate),153 (18d8+72),18,16,18,14,14,18,12,4
-"Etali,_Primal_Storm_(really_big_spinosaurus)",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Primal_Storm_Etali,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Eternal_Flame_Guardian,M,Humanoid,Human,CE,"17 (breastplate, shield)",45 (7d8+14),15,13,14,8,11,13,2,2
 Eternal_Flame_Priest,M,Humanoid,Human,NE,12 (15 with mage armor),52 (8d8+16),12,15,14,10,11,16,3,2
 Eternal_Lich,M,Undead,,CE,18,475 (38d8+304),7,26,27,30,29,26,30,9
@@ -1182,7 +1182,7 @@ Fear_Smith,M,Fey,,CN,17 (natural),123 (19d8+38),11,17,14,11,15,18,10,4
 Feathergale_Knight,M,Humanoid,Human,LE,16 (scale),33 (6d8+6),14,14,12,11,10,14,1,2
 Felid_Dragon,H,Dragon,,N,18,272 (22d12+132),18,26,23,16,17,19,19,6
 Felidar,L,Celestial,,LN,17 (natural),93 (11d10+33),19,16,17,10,17,14,5,3
-"Felidar,_Winged",L,Celestial,,LN,17 (natural),93 (11d10+33),19,16,17,10,17,14,5,3
+Winged_Felidar,L,Celestial,,LN,17 (natural),93 (11d10+33),19,16,17,10,17,14,5,3
 Fell-Ahng'el,M,Aberration,,NE,16,221 (26d8+104),14,18,19,20,17,26,18,6
 Fell-Murdona,L,Aberration,,NE,18 (natural),199 (21d10+84),20,13,19,13,14,26,15,5
 Fell-Ordalius,S,Aberration,,NE,18 (natural),162 (25d6+75),1,22,16,8,25,10,17,6
@@ -1208,9 +1208,9 @@ Fierstejerren,M,Undead,,NE,14 (studded Leather),105 (14d8+42),16,15,16,14,11,12,
 Fighter_Mage,M,Humanoid,,,16 (chain),58 (9d8+18),14,12,14,14,12,10,3,2
 Fire_Archon,H,Elemental,,CG or CE,19 (natural),300 (24d12+144),19,26,22,16,20,18,19,6
 Fire_Crab,M,Elemental,,,15 (natural),75 (10d8+30),18,10,16,2,14,2,5,3
-"Fire_Crab,_Diminutive",S,Elemental,,,13 (natural),22 (4d6+8),14,14,14,2,10,2,2,2
-"Fire_Crab,_Greater",L,Elemental,,,14 (natural),34 (4d10+12),18,11,16,1,11,2,2,2
-"Fire_Crab,_Lesser",S,Elemental,,,12,4 (1d6+1),10,14,12,1,10,2,0.125,2
+Diminutive_Fire_Crab,S,Elemental,,,13 (natural),22 (4d6+8),14,14,14,2,10,2,2,2
+Greater_Fire_Crab,L,Elemental,,,14 (natural),34 (4d10+12),18,11,16,1,11,2,2,2
+Lesser_Fire_Crab,S,Elemental,,,12,4 (1d6+1),10,14,12,1,10,2,0.125,2
 Fire_Dancer_Swarm,M,Elemental,(Swarm of Tiny),NE,15,90 (12d8+36),10,20,16,6,10,7,7,3
 Fire_Drake,S,Dragon,,CE,13 (natural),27 (6d6+6),13,13,13,4,11,10,1,2
 Fire_Elemental,L,Elemental,,N,13,102 (12d10+36),10,17,16,6,10,7,5,3
@@ -1224,7 +1224,7 @@ Fire_Lizard,H,Monstrosity,,N,13 (natural),138 (12d12+60),25,10,20,2,11,10,12,4
 Fire_Nymph,M,Elemental,,CN,13 (natural),16 (3d8+3),10,13,12,16,17,19,3,2
 Fire_Phantom,M,Undead,,CN,14 (natural),49 (9d8+9),19,14,13,5,12,14,6,3
 Fire_Snake,M,Elemental,,NE,14 (natural),22 (5d8),12,14,11,7,10,8,1,2
-"Fire_Snake,_Poisonous",S,Elemental,,,13,13 (3d6+3),10,17,12,1,12,7,0.5,2
+Poisonous_Fire_Snake,S,Elemental,,,13,13 (3d6+3),10,17,12,1,12,7,0.5,2
 Fire_Whale_(Burning_Leviathan),H,Elemental,,,14 (natural),175 (11d12+84),30,13,22,2,12,6,11,4
 Fire-Infused_Water_Elemental,H,Elemental,,N,14 (natural),138 (12d12+60),20,14,20,5,10,8,7,3
 Firebird,S,Celestial,,NG,16 (natural),99 (18d6+36),12,19,14,16,15,21,4,2
@@ -1349,9 +1349,9 @@ Gangler,L,Monstrosity,,CE,16 (natural),67 (9d10+18),14,16,14,9,14,6,4,2
 Gar_Shatterkeel,M,Humanoid,Human,NE,16 (natural),112 (15d8+45),15,15,16,12,18,13,9,4
 Gargoctopus,L,Monstrosity,,N,13 (natural),104 (16d10+16),18,13,12,19,16,14,5,3
 Gargoyle,M,Elemental,,CE,15 (natural),52 (7d8+21),15,11,16,6,11,7,2,2
-"Gargoyle,_Four_Armed",M,Elemental,,CE,15 (natural),55 (10d8+10),15,14,12,6,11,7,4,2
-"Gargoyle,_Green_Guardian",M,Elemental,,CE,13 (natural),34 (4d8+16),15,14,18,6,11,7,1,2
-"Gargoyle,_Margoyle",M,Elemental,,CE,16 (natural),114 (12d8+60),17,15,20,8,12,8,5,3
+Four_Armed_Gargoyle,M,Elemental,,CE,15 (natural),55 (10d8+10),15,14,12,6,11,7,4,2
+Green_Guardian_Gargoyle,M,Elemental,,CE,13 (natural),34 (4d8+16),15,14,18,6,11,7,1,2
+Margoyle_Gargoyle,M,Elemental,,CE,16 (natural),114 (12d8+60),17,15,20,8,12,8,5,3
 Garicle,S,Plant,,CN,12,31 (7d6+7),6,14,12,12,18,12,1,2
 Garroter_Crab,T,Beast,,,13 (natural),18 (4d4+8),7,14,14,1,10,2,0.25,2
 Gas_Spore,L,Plant,,,5,1 (1d10-4),5,1,3,1,1,1,0.5,2
@@ -1374,7 +1374,7 @@ Gerridae,L,Fey,,N,14,77 (9d10+27),16,15,17,2,13,7,1,2
 Geruzou_(Slime_Demon),S,Fiend,Demon,CE,15 (natural),31 (7d6+7),12,15,12,8,8,10,2,2
 Geryon,H,Fiend,Devil,LE,19 (natural),300 (24d12+144),29,17,22,19,16,23,22,7
 Ghald,L,Humanoid,Sahuagin,LE,15 (natural),102 (12d10+36),19,17,16,14,13,17,7,3
-"Ghalta,_Primal_Hunger",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Primal_Hunger_Ghalta,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Gharros_(Scorpion_Demon),L,Fiend,Demon,CE,20 (natural),270 (20d10+160),26,18,26,18,18,20,16,5
 Ghast,M,Undead,,CE,13,36 (8d8),16,17,10,11,10,8,2,2
 Ghast_of_Leng,L,Aberration,,NE,14 (natural),127 (17d10+34),15,17,14,4,9,6,3,2
@@ -1392,12 +1392,12 @@ Ghostwalk_Spider,L,Monstrosity,,NE,15,119 (14d10+42),15,20,17,9,14,8,9,4
 Ghoul,M,Undead,,CE,12,22 (5d8),13,15,10,7,10,6,1,2
 Ghoul_Bat,S,Undead,,NE,13,14 (4d6),6,16,11,8,12,10,0.25,2
 Ghoul_Wolf,L,Undead,,CE,13 (natural),52 (8d8+16),16,13,13,7,11,8,2,2
-"Ghoul,_Beggar",M,Undead,,CE,12,13 (3d8),10,15,10,12,11,14,0.5,2
-"Ghoul,_Bonepowder",S,Undead,,NE,18 (natural),195 (26d6+104),10,20,18,19,15,18,12,4
-"Ghoul,_Darakhul",M,Undead,,NE,"16 (scale, shield)",78 (12d8+24),16,17,14,14,12,12,3,2
-"Ghoul,_Emperor",M,Undead,,NE,20 (natural),204 (24d8+96),18,14,19,20,17,21,20,6
-"Ghoul,_Imperial",M,Undead,,LE,16 (breastplate),93 (17d8+17),16,14,12,13,14,14,4,2
-"Ghoul,_Iron",M,Undead,,LE,16 (breastplate),143 (22d8+44),18,16,14,14,14,14,5,3
+Ghoul_Beggar,M,Undead,,CE,12,13 (3d8),10,15,10,12,11,14,0.5,2
+Ghoul_Bonepowder,S,Undead,,NE,18 (natural),195 (26d6+104),10,20,18,19,15,18,12,4
+Ghoul_Darakhul,M,Undead,,NE,"16 (scale, shield)",78 (12d8+24),16,17,14,14,12,12,3,2
+Ghoul_Emperor,M,Undead,,NE,20 (natural),204 (24d8+96),18,14,19,20,17,21,20,6
+Ghoul_Imperial,M,Undead,,LE,16 (breastplate),93 (17d8+17),16,14,12,13,14,14,4,2
+Ghoul_Iron,M,Undead,,LE,16 (breastplate),143 (22d8+44),18,16,14,14,14,14,5,3
 Ghoulsteed,L,Undead,,NE,13 (natural),85 (10d10+30),18,10,16,6,10,6,3,2
 Ghul,M,Undead,, Evil,15 (natural),105 (14d8+42),16,15,16,10,10,15,5,3
 Giant_Albino_Bat,H,Monstrosity,,NE,15 (natural),76 (9d12+18),19,16,15,7,14,6,3,2
@@ -1449,9 +1449,9 @@ Giant_Lynx,L,Celestial,,CG,17 (natural),123 (13d10+52),16,22,19,17,20,20,9,4
 Giant_Mongoose,M,Beast,,,13,13 (2d8+4),10,16,14,3,14,7,0.25,2
 Giant_Moray_Eel,M,Beast,,,12,52 (7d8+21),17,14,16,1,12,4,2,2
 Giant_Moth,S,Beast,,,11,7 (2d6),10,12,10,3,10,7,0.125,2
-"Giant_Moth,_Rimewing",S,Beast,,,12,22 (5d6+5),11,14,12,3,10,7,0.25,2
-"Giant_Moth,_Shockwing",S,Beast,,,12,27 (5d6+10),11,15,14,3,10,7,1,2
-"Giant_Moth,_Sootwing",S,Beast,,,11,13 (3d6+3),11,12,12,3,10,7,0.25,2
+Giant_Moth_Rimewing,S,Beast,,,12,22 (5d6+5),11,14,12,3,10,7,0.25,2
+Giant_Moth_Shockwing,S,Beast,,,12,27 (5d6+10),11,15,14,3,10,7,1,2
+Giant_Moth_Sootwing,S,Beast,,,11,13 (3d6+3),11,12,12,3,10,7,0.25,2
 Giant_Octopus,L,Beast,,,11,52 (8d10+8),17,13,13,4,10,4,1,2
 Giant_Owl,L,Beast,,,12,19 (3d10+3),13,15,12,8,13,10,0.25,2
 Giant_Poisonous_Snake,M,Beast,,,14,11 (2d8+2),10,18,13,2,10,3,0.25,2
@@ -1497,7 +1497,7 @@ Gillmonkey,S,Beast,,CE,12,7 (2d6),8,15,10,10,12,9,0.25,2
 Gingwatzim,S,Aberration,Shapechanger,,12,39 (6d6+18),3,15,16,4,11,6,2,2
 Girallon,L,Monstrosity,,,13,59 (7d10+21),18,16,16,5,12,7,4,2
 Girallon_Zombie,L,Undead,,,11 (natural),59 (7d10+21),18,12,16,3,7,5,3,2
-"Gishath,_Sun's_Avatar",G,Beast,,,16 (natural),203 (14d20+56),24,12,18,12,16,6,10,4
+Gishath_Sun's_Avatar,G,Beast,,,16 (natural),203 (14d20+56),24,12,18,12,16,6,10,4
 Githyanki_Gish,M,Humanoid,Gith,LE,17 (half-plate),123 (19d8+38),17,15,14,16,15,16,10,4
 Githyanki_Kith'rak,M,Humanoid,Gith,LE,18 (plate),180 (24d8+72),18,16,17,16,15,17,12,4
 Githyanki_Knight,M,Humanoid,Gith,LE,18 (plate),91 (14d8+28),16,14,15,14,14,15,8,3
@@ -1545,9 +1545,9 @@ Goblin_Boss,S,Humanoid,Goblinoid,NE,"17 (chain shirt, shield)",21 (6d6),10,14,10
 Goblin_Gang_Member,S,Humanoid,Goblinoid,NE,14 (leather),10 (3d6),8,16,10,10,10,8,0.25,2
 Goblin_Queen,M,Humanoid,Goblinoid,NE,13 (16 with mage armor),33 (6d8+6),12,16,12,10,14,16,4,2
 Goblin_Spy,S,Humanoid,Goblinoid,NE,14 (leather),13 (3d6+3),7,16,12,10,10,10,1,2
-"Goblin,_Chaos-Spawn",S,Humanoid,Goblinoid,NE,13 (natural),22 (5d6+5),10,14,12,10,10,6,0.5,2
-"Goblin,_Dust",S,Humanoid,Goblinoid,NE,14 (leather),5 (1d6+2),8,16,14,10,8,8,0.25,2
-"Goblin,_Shadow",S,Humanoid,Goblinoid,NE,13,13 (3d6+3),10,16,12,13,12,8,0.5,2
+Chaos-Spawn_Goblin,S,Humanoid,Goblinoid,NE,13 (natural),22 (5d6+5),10,14,12,10,10,6,0.5,2
+Dust_Goblin,S,Humanoid,Goblinoid,NE,14 (leather),5 (1d6+2),8,16,14,10,8,8,0.25,2
+Shadow_Goblin,S,Humanoid,Goblinoid,NE,13,13 (3d6+3),10,16,12,13,12,8,0.5,2
 Gohl,L,Aberration,,CE,13,85 (10d10+30),18,17,17,6,12,6,8,3
 Gold_Bulette,H,Monstrosity,,CG,20 (natural),232 (16d12+128),24,16,26,18,14,16,17,6
 Gold_Dragon_Wyrmling,M,Dragon,Gold Dragon,LG,17 (natural),60 (8d8+24),19,14,17,14,11,16,3,2
@@ -1575,10 +1575,10 @@ Grave_Behemoth,H,Undead,,NE,9,210 (20d12+80),22,8,19,13,10,8,10,4
 Grave_Mephit,S,Elemental,,NE,12,27 (6d6+6),12,8,12,11,10,8,0.25,2
 Graveslayer_Dwarf,M,Humanoid,Dwarf, non-Evil,18 (plate),112 (15d8+45),18,10,17,10,14,13,4,2
 Graveyard_Dragon,L,Undead,,NE,16 (natural),127 (15d10+45),16,10,17,10,11,13,7,3
-"Gravity_Elemental,_Huge",H,Elemental,,N,14,126 (12d12+48),10,10,18,4,11,11,9,4
-"Gravity_Elemental,_Large",L,Elemental,,N,14,95 (10d10+40),10,10,18,4,11,11,7,3
-"Gravity_Elemental,_Medium",M,Elemental,,N,13,75 (10d8+30),10,10,17,4,11,11,5,3
-"Gravity_Elemental,_Small",S,Elemental,,N,13,52 (8d6+24),10,10,17,4,11,11,3,2
+Huge_Gravity_Elemental,H,Elemental,,N,14,126 (12d12+48),10,10,18,4,11,11,9,4
+Large_Gravity_Elemental,L,Elemental,,N,14,95 (10d10+40),10,10,18,4,11,11,7,3
+Medium_Gravity_Elemental,M,Elemental,,N,13,75 (10d8+30),10,10,17,4,11,11,5,3
+Small_Gravity_Elemental,S,Elemental,,N,13,52 (8d6+24),10,10,17,4,11,11,3,2
 Gray_Dragon_Wyrmling,M,Dragon,Gray Dragon,NE,16 (natural),44 (8d8+8),17,14,13,10,11,13,4,2
 Gray_Ooze,M,Ooze,,,8,22 (3d8+9),12,6,16,1,6,2,0.5,2
 Gray_Orc,M,Humanoid,Orc,N,13,15 (2d8+6),14,16,16,9,11,10,0.25,2
@@ -1689,7 +1689,7 @@ Harengon_Brigand,M,Humanoid,Harengon,,14 (leather),9 (2d8),14,17,11,10,11,10,0.1
 Harengon_Sniper,M,Humanoid,Harengon,,14 (leather),9 (2d8),10,17,11,10,13,10,0.25,2
 Harpy,M,Monstrosity,,CE,11,38 (7d8+7),12,13,12,7,10,13,1,2
 Harpy_Matriarch,M,Monstrosity,,CE,14 (natural),88 (16d8+16),13,16,12,9,10,16,5,3
-"Harpy,_Owl",M,Monstrosity,,NE,14,112 (15d8+45),12,17,16,11,14,14,5,3
+Owl_Harpy,M,Monstrosity,,NE,14,112 (15d8+45),12,17,16,11,14,14,5,3
 Haruspollach,H,Giant,Hag, Chaotic,16 (natural),207 (18d12+90),23,12,21,14,22,18,12,4
 Hashalaq_Quori,M,Aberration,,LE,17 (natural),99 (18d8+18),12,14,13,18,16,18,9,4
 Haugbui,M,Undead,,LN,18 (natural),136 (16d8+64),18,17,18,15,20,16,13,5
@@ -1974,7 +1974,7 @@ Kraul_Warrior,M,Humanoid,Kraul,NE,18 (natural),27 (5d8+5),15,12,13,10,11,8,0.5,2
 Krenko,S,Humanoid,Goblinoid,NE,"17 (chain shirt, shield)",21 (6d6),10,14,10,10,8,14,1,2
 Krull,M,Humanoid,Tortle,LE,17 (natural),117 (18d8+36),20,14,15,12,20,12,6,3
 Kruthik_Hive_Lord,L,Monstrosity,,,20 (natural),102 (12d10+36),19,16,17,10,14,10,5,3
-"Kruthik,_Young",S,Monstrosity,Kruthik,,16 (natural),9 (2d6+2),13,16,13,4,10,6,0.125,2
+Young_Kruthik,S,Monstrosity,Kruthik,,16 (natural),9 (2d6+2),13,16,13,4,10,6,0.125,2
 Kuah-Lij,M,Humanoid,Kuah-Lij,LN,11,6 (1d8+2),8,13,14,16,13,8,0.125,2
 Kulmking,L,Undead,,CE,14 (natural),127 (15d10+45),17,15,16,12,18,17,9,4
 Kuo-Toa,M,Humanoid,Kuo-Toa,NE,"13 (natural, shield)",18 (4d8),13,10,11,11,10,8,0.25,2
@@ -1983,7 +1983,7 @@ Kuo-Toa_Monitor,M,Humanoid,Kuo-Toa,NE,13,65 (10d8+20),14,10,14,12,14,11,3,2
 Kuo-Toa_Whip,M,Humanoid,Kuo-Toa,NE,11 (natural),65 (10d8+20),14,10,14,12,14,11,1,2
 Kurok-Spirit,L,Fiend,,CN,13,19 (3d10+3),1,16,13,7,10,12,1,2
 Kuunganisha,S,Fiend,, Evil,13,17 (15d6),6,17,11,10,12,13,2,2
-"Kyrilla,_Accursed_Gorgon",L,Monstrosity,,LE,15 (natural),127 (15d10+45),11,16,16,14,14,15,10,4
+Accursed_Gorgon_Kyrilla,L,Monstrosity,,LE,15 (natural),127 (15d10+45),11,16,16,14,14,15,10,4
 Kyrt,M,Humanoid,Kyrt,NE,15 (natural),120 (16d8+48),20,10,16,6,18,6,5,3
 Kysh,M,Humanoid,Triton,LG,13,27 (5d8+5),14,16,12,10,13,14,1,2
 Lady_Hawk,M,Humanoid,"Human, Shapechanger",LG,13 (16 with barkskin),45 (7d8+14),14,16,15,12,20,16,5,3
@@ -2029,8 +2029,8 @@ Lesser_Lunarchidna,M,Aberration,,NE,15 (natural),39 (6d8+12),10,15,14,6,12,13,2,
 Lesser_Scrag,M,Monstrosity,,CE,13 (natural),45 (7d8+14),18,10,15,8,10,9,2,2
 Lesser_Star_Spawn_Emissary,M,Aberration,,CE,19 (natural),241 (21d8+147),21,18,24,25,20,23,19,6
 Leucrotta,L,Monstrosity,,CE,14 (natural),67 (9d10+18),18,14,15,9,12,6,3,2
-"Leucrotta,_Adult",L,Monstrosity,,CE,14 (natural),39 (6d10+6),14,14,12,8,9,12,2,2
-"Leucrotta,_Young",M,Monstrosity,,CE,13 (natural),10 (3d8-3),10,15,8,8,9,10,0.25,2
+Adult_Leucrotta,L,Monstrosity,,CE,14 (natural),39 (6d10+6),14,14,12,8,9,12,2,2
+Young_Leucrotta,M,Monstrosity,,CE,13 (natural),10 (3d8-3),10,15,8,8,9,10,0.25,2
 Leviathan,G,Elemental,,N,17,328 (16d20+160),30,24,30,2,18,17,20,6
 Liara_Portyr,M,Humanoid,Human,LE,"15 (studded leather, shield)",84 (13d8+26),16,12,15,14,14,16,4,2
 Library_Automaton,S,Construct,,LN,13 (natural),7 (2d6),8,13,10,14,12,8,0.5,2
@@ -2044,7 +2044,7 @@ Light_Cadejo,M,Fey,,LG,18 (natural),99 (18d8+18),10,18,12,10,18,10,3,2
 Light_Dragon_Wyrmling,M,Dragon,Light Dragon,NG,13 (natural),39 (6d8+12),14,10,15,12,14,13,2,2
 Light_Drake,T,Dragon,,NG,13,24 (7d4+7),7,16,13,8,12,14,0.5,2
 Lightning_Archon,M,Elemental,,CE,18,234 (36d8+72),12,26,15,18,20,12,21,7
-"Lightning_Elemental,_Medium",M,Elemental,,N,15,67 (9d8+27),14,20,16,4,11,11,6,3
+Medium_Lightning_Elemental,M,Elemental,,N,15,67 (9d8+27),14,20,16,4,11,11,6,3
 Lightning_Mephit,S,Elemental,,NE,13,21 (6d6),10,17,10,6,11,15,1,2
 Lightning_Treant,H,Plant,,NE,15 (natural),105 (10d12+40),20,17,19,10,14,10,6,3
 Lightning_Weird,L,Elemental,,CE,18 (natural),90 (12d10+24),17,20,15,10,12,14,7,3
@@ -2169,12 +2169,12 @@ Mangrove_Treant,H,Plant,,N,15 (natural),136 (13d12+52),20,7,19,12,15,12,7,3
 Manshoon,M,Humanoid,Human,LE,"19 (robes of the archmage, staff of power)",126 (23d8+23),10,14,12,23,15,16,13,5
 Mantari,M,Monstrosity,,NE,12,4 (1d8),12,14,11,2,11,6,0.125,2
 Manticore,L,Monstrosity,,LE,14 (natural),68 (8d10+24),17,16,17,7,12,8,3,2
-"Manticore,_Heart-Piercing",L,Monstrosity,,CE,15 (natural),136 (16d10+48),19,14,16,5,12,6,5,3
+Heart-Piercing_Manticore,L,Monstrosity,,CE,15 (natural),136 (16d10+48),19,14,16,5,12,6,5,3
 Mantidrake,L,Monstrosity,,LE,15 (natural),147 (14d10+70),23,15,20,9,14,13,11,4
-"Mantik,_Barbed_King_of_the_Manticores",H,Monstrosity,,LE,16 (natural),168 (16d12+64),19,14,18,10,14,16,9,4
+Mantik_Barbed_King_of_the_Manticores,H,Monstrosity,,LE,16 (natural),168 (16d12+64),19,14,18,10,14,16,9,4
 Mantrap,L,Plant,,,12,45 (7d10+7),15,14,12,1,10,2,1,2
 Map_Mimic,T,Monstrosity,Shapechanger,N,14 (natural),32 (5d8+10),10,15,14,13,15,16,0.25,2
-"Maphistal,_Second_of_Orcus",L,Fiend,Demon,CE,21 (natural),400 (32d10+224),28,16,24,18,20,23,26,8
+Maphistal_Second_of_Orcus,L,Fiend,Demon,CE,21 (natural),400 (32d10+224),28,16,24,18,20,23,26,8
 Margoyle,M,Monstrosity,,CE,15 (natural),68 (8d8+32),17,15,19,6,10,7,4,2
 Mari_Lwyd,L,Undead,,N,15 (natural),66 (7d10+28),16,13,19,10,14,15,4,2
 Marid,L,Elemental,Genie,CN,17 (natural),229 (17d10+136),22,12,26,18,17,18,11,4
@@ -2314,7 +2314,7 @@ Mule,M,Beast,,,10,11 (2d8+2),14,10,13,2,10,5,0.125,2
 Mummy,M,Undead,,LE,11 (natural),58 (9d8+18),16,8,15,6,10,12,3,2
 Mummy_Lord,M,Undead,,LE,17 (natural),97 (13d8+39),18,10,17,11,18,16,15,5
 Mummy_of_the_Deep,M,Undead,,NE,14 (natural),52 (8d8+16),17,10,14,6,14,15,5,3
-"Mummy,_Venomous",M,Undead,,LE,11 (natural),58 (9d8+18),16,8,15,7,10,14,3,2
+Venomous_Mummy,M,Undead,,LE,11 (natural),58 (9d8+18),16,8,15,7,10,14,3,2
 Murder_Crow,M,Undead,,CE,15 (natural),52 (8d8+16),10,17,14,2,14,12,3,2
 Murgrik,L,Aberration,,CE,18 (natural),152 (16d10+64),23,10,18,6,14,9,9,4
 Mustard_Jelly,L,Ooze,,,14 (natural),136 (13d10+65),15,10,21,10,10,10,6,3
@@ -2359,7 +2359,7 @@ Nereid,M,Fey,, Chaotic,13,44 (8d8+8),10,17,12,13,14,16,2,2
 Nergalid_(Devil_Toad),L,Fiend,Devil,LE,12 (natural),42 (4d10+20),18,12,20,12,10,12,3,2
 Neronvain,M,Humanoid,Elf,NE,17,117 (18d8+36),8,17,15,16,13,18,9,4
 Netherspark,M,Elemental,,NE,15 (natural),90 (12d8+36),19,16,16,14,16,14,6,3
-"Nezahal,_Primal_Tide",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Nezahal_Primal_Tide,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Nezznar_the_Black_Spider,M,Humanoid,Elf,NE,11 (14 with mage armor),27 (6d8),9,13,10,16,14,13,2,2
 Ngobou,L,Beast,,,15 (natural),85 (10d10+30),20,9,16,2,9,6,5,3
 Nharyth,H,Aberration,,CE,17 (natural),168 (16d12+64),20,15,18,5,14,7,9,4
@@ -2384,7 +2384,7 @@ Ningyo,S,Aberration,,NE,15,77 (14d6+28),8,21,15,14,11,7,7,3
 Nintra_Siotta,L,Fey,,CE,17,306 (36d10+108),16,24,16,17,15,24,16,5
 Niv-Mizzet,G,Dragon,,CN,22 (natural),370 (19d20+171),29,14,29,30,17,25,26,8
 Nivix_Cyclops,L,Giant,,,14 (hide),115 (10d12+50),24,9,22,7,10,9,8,3
-"Nix,_Goddess_of_Darkness",H,Fiend,Shapechanger,NE,22 (natural),435 (30d20+120),14,16,18,30,30,30,30,9
+Nix_Goddess_of_Darkness,H,Fiend,Shapechanger,NE,22 (natural),435 (30d20+120),14,16,18,30,30,30,30,9
 Nixie,T,Fey,,CG,14,1 (1d4-1),2,18,8,10,14,16,0.25,2
 Nkosi,M,Humanoid,Nkosi,LN,15 (studded leather),11 (2d8+2),16,16,12,10,10,8,0.5,2
 Nkosi_Pridelord,M,Humanoid,Nkosi,LN,16 (studded leather),93 (17d8+17),18,18,12,10,10,14,4,2
@@ -2409,10 +2409,10 @@ Oaken_Bolter,M,Construct,,,16 (natural),58 (9d8+18),12,18,15,3,10,1,5,3
 Oakman,S,Fey,,CN,12 (natural),33 (6d6+12),12,14,14,11,15,14,1,2
 Oasis_Keeper,H,Monstrosity,,,15 (natural),123 (13d12+39),20,14,16,3,12,8,9,4
 Oblex_Spawn,T,Ooze,,LE,13,18 (4d4+8),8,16,15,14,11,10,0.25,2
-"Obsidian_Elemental,_Huge",H,Elemental,,N,17 (natural),137 (11d12+66),20,8,22,4,11,11,11,4
-"Obsidian_Elemental,_Large",L,Elemental,,N,16 (natural),94 (9d10+45),20,8,20,4,11,11,8,3
-"Obsidian_Elemental,_Medium",M,Elemental,,N,15 (natural),66 (7d8+35),18,8,20,4,11,11,5,3
-"Obsidian_Elemental,_Small",S,Elemental,,N,14,45 (6d6+24),16,8,18,4,11,11,2,2
+Huge_Obsidian_Elemental,H,Elemental,,N,17 (natural),137 (11d12+66),20,8,22,4,11,11,11,4
+Large_Obsidian_Elemental,L,Elemental,,N,16 (natural),94 (9d10+45),20,8,20,4,11,11,8,3
+Medium_Obsidian_Elemental,M,Elemental,,N,15 (natural),66 (7d8+35),18,8,20,4,11,11,5,3
+Small_Obsidian_Elemental,S,Elemental,,N,14,45 (6d6+24),16,8,18,4,11,11,2,2
 Obsidian_Minotaur,L,Construct,,N,16 (natural),76 (8d10+32),21,10,18,3,11,1,8,3
 Obzedat_Ghost,M,Undead,,LE,14 (natural),110 (20d8+20),10,10,13,18,20,17,8,3
 Oceanus,M,Humanoid,Elf,NG,12 (leather),30 (4d8+12),15,12,16,11,12,10,0.5,2
@@ -2553,7 +2553,7 @@ Plaresh,M,Fiend,(Swarm of Tiny),CE,15 (natural),30 (4d8+12),2,17,16,6,12,3,3,2
 Platinum_Mouse_Dragon,T,Dragon,,CG,15 (natural),44 (8d4+24),7,16,16,12,15,15,5,3
 Plesiosaurus,L,Beast,,,13 (natural),68 (8d10+24),18,15,16,2,12,5,2,2
 Podling,M,Plant,,LE,10,26 (4d8+8),15,11,14,10,10,10,0.5,2
-"Poena,_Duke_of_Retribution",L,Fiend,Devil,LE,18 (plate),231 (22d10+110),24,18,20,21,20,24,19,6
+Poena_Duke_of_Retribution,L,Fiend,Devil,LE,18 (plate),231 (22d10+110),24,18,20,21,20,24,19,6
 Poisonous_Snake,T,Beast,,,13,2 (1d4),2,16,11,1,10,3,0.125,2
 Polar_Bear,L,Beast,,,12 (natural),42 (5d10+15),20,10,16,2,13,7,2,2
 Pollenella_the_Honeybee,T,Beast,,,13,1 (1d4-1),1,16,8,1,10,1,0,2
@@ -2661,7 +2661,7 @@ Rangda,L,Fiend,Demon,CE,19 (natural),262 (25d10+125),21,19,20,22,17,21,17,6
 Ras_Nsi,M,Monstrosity,"Shapechanger, Yuan-Ti",NE,15 (bracers of defense),127 (17d8+51),17,16,17,18,18,21,7,3
 Rat,T,Beast,,,10,1 (1d4-1),2,11,9,2,10,4,0,2
 Rat_King,M,Monstrosity,,CE,14 (natural),76 (9d8+36),6,16,18,11,15,16,5,3
-"Rat,_Shadow",T,Undead,,,12,1 (1d4-1),6,15,9,2,12,12,0,2
+Shadow_Rat,T,Undead,,,12,1 (1d4-1),6,15,9,2,12,12,0,2
 Ratatosk,T,Celestial,,CN,14,42 (12d4+12),4,18,12,17,10,18,4,2
 Ratatosk_Warlord,S,Celestial,,CN,16 (breastplate),77 (14d6+28),7,18,14,12,14,12,5,3
 Ratfolk,S,Humanoid,Ratfolk,N,14 (studded Leather),7 (2d6),7,15,11,14,10,10,0.25,2
@@ -2719,8 +2719,8 @@ Reynard_the_Fox_Lord,M,Fey,Shapechanger,CN,17 (natural),104 (16d8+32),14,19,14,1
 Rezmir,M,Humanoid,Half-black Dragon,NE,13,90 (12d8+36),18,16,16,15,12,14,7,3
 Rhinceros_Beetle,L,Beast,,,15 (natural),114 (12d10+48),23,10,18,1,10,9,7,3
 Rhinoceros,L,Beast,,,11 (natural),45 (6d10+12),21,8,15,2,12,6,2,2
-"Rhinoceros,_Nestback_Wasp_infected",L,Beast,,,11 (natural),45 (6d10+12),25,8,15,2,8,4,2,2
-"Rhinoceros,_Prehistoric_(Embolotherium)",L,Beast,,,13 (natural),76 (9d10+27),22,8,16,2,11,6,3,2
+Nestback_Wasp_infected_Rhinoceros,L,Beast,,,11 (natural),45 (6d10+12),25,8,15,2,8,4,2,2
+Prehistoric_Rhinoceros,L,Beast,,,13 (natural),76 (9d10+27),22,8,16,2,11,6,3,2
 Rhopalocerex_Demon_Lord_of_Deception,L,Fiend,Demon,CE,18 (natural),220 (21d10+105),19,21,20,22,18,25,20,6
 Rich_Lich,M,Undead,, Evil,17 (natural),110 (20d8+20),12,18,12,19,16,16,17,6
 Rictavio,M,Humanoid,Human,LG,12 (leather),77 (14d8+14),9,12,13,16,18,16,5,3
@@ -2834,8 +2834,8 @@ Scorchbringer_Guard,M,Humanoid, Race,CN,16 (breastplate),11 (2d8+2),13,14,12,10,
 Scorpion,T,Beast,,,11 (natural),1 (1d4-1),2,11,8,1,8,2,0,2
 Scorpion_Assassin,M,Humanoid, Race,NE,17 (studded leather),105 (14d8+42),12,20,16,10,18,16,8,3
 Scorpion_Cultist,M,Humanoid, Race,N,13 (leather),19 (3d8+6),11,14,15,10,13,10,0.5,2
-"Scorpion,_Night",L,Beast,,,14 (natural),90 (12d10+24),15,14,14,1,9,3,3,2
-"Scorpion,_Stygian_Fat-Tailed",T,Beast,,,14 (natural),10 (4d4),3,16,10,1,10,2,3,2
+Night_Scorpion,L,Beast,,,14 (natural),90 (12d10+24),15,14,14,1,9,3,3,2
+Stygian_Fat-Tailed_Scorpion,T,Beast,,,14 (natural),10 (4d4),3,16,10,1,10,2,3,2
 Scout,M,Humanoid, Race,,13 (leather),16 (3d8+3),11,14,12,11,13,11,0.5,2
 Screaming_Devilkin,S,Fey,,LE,17 (natural),18 (4d6+4),4,16,13,5,8,11,1,2
 Scribe_Devil,M,Fiend,Devil,LE,15 (natural),82 (11d8+33),14,16,16,18,14,17,5,3
@@ -2901,7 +2901,7 @@ Shadow_River_Lord,M,Undead,,NE,16 (natural),135 (18d8+54),14,18,16,12,16,18,9,4
 Shadow_Rook,T,Undead,,,12,5 (2d4),3,14,9,2,13,7,0,2
 Shadow_Skeleton,M,Undead,,NE,13,52 (8d8+16),10,16,15,9,11,9,2,2
 Shadow_Spider,M,Undead,,CE,13,39 (6d8+12),14,16,14,6,10,8,3,2
-"Shadow,_Lesser",M,Undead,,CE,12,7 (2d8-2),5,15,9,5,10,14,0.125,2
+Lesser_Shadow,M,Undead,,CE,12,7 (2d8-2),5,15,9,5,10,14,0.125,2
 Shadowghast,M,Undead,,CE,15,49 (9d8+9),14,20,12,12,11,8,5,3
 Shadrix_Silverquill,G,Dragon,Bard,N,21 (natural),363 (22d20+132),25,14,23,18,18,26,22,7
 Shambling_Mound,L,Plant,,,15 (natural),136 (16d10+48),18,8,16,5,10,5,5,3
@@ -2995,7 +2995,7 @@ Smiler_the_Defiler,M,Fey,Elf,CE,18 (+2 leather),165 (22d8+66),14,20,16,18,11,18,
 Smoke_Dragon,S,Dragon,,N,14 (natural),27 (6d6+6),13,12,13,10,12,10,1,2
 Smoke_Mephit,S,Elemental,,NE,12,22 (5d6+5),6,14,12,10,10,11,0.25,2
 Snake_with_a_100_Mage_Hands,S,Monstrosity,,N,14,67 (15d6+15),8,18,12,18,10,6,3,2
-"Snapdax,_Apex_of_the_Hunt",G,Monstrosity,,,18 (natural),186 (12d20+60),22,25,20,8,14,16,18,6
+Snapdax_Apex_of_the_Hunt,G,Monstrosity,,,18 (natural),186 (12d20+60),22,25,20,8,14,16,18,6
 Sniffer_Beetle,S,Beast,,,12 (natural),5 (1d6+2),13,10,14,3,12,7,0.125,2
 Snow_Cat,M,Beast,,,12,13 (3d8),14,14,10,3,14,7,0.25,2
 Snow_Giant,H,Giant,,N,11,138 (12d12+60),19,12,20,9,15,6,5,3
@@ -3008,7 +3008,7 @@ Solar,L,Celestial,Angel,LG,21 (natural),243 (18d10+144),26,22,26,25,25,30,21,7
 Soldier,M,Humanoid, Race,,"18 (chain mail, shield)",16 (3d8+3),13,12,12,10,11,11,0.5,2
 Sombereave,M,Fey,,NE,14,78 (12d8+24),14,19,14,10,13,16,5,3
 Son_of_Fenris,H,Monstrosity,,CE,17 (natural),175 (14d12+84),26,16,23,16,18,14,12,4
-"Sonechard,_General_of_Orcus",L,Fiend,Demon,CE,19,336 (32d10+160),22,18,21,19,16,20,20,6
+Sonechard_General_of_Orcus,L,Fiend,Demon,CE,19,336 (32d10+160),22,18,21,19,16,20,20,6
 Song_Angel,L,Celestial,Angel,LG,15 (natural),76 (9d10+27),12,16,16,18,18,21,6,3
 Sooze,M,Aberration,Shoth,LN,12 (natural),49 (11d8),14,10,10,10,14,16,0.5,2
 Soul_Eater,M,Fiend,,NE,16,104 (16d8+32),13,22,14,12,11,11,7,3
@@ -3038,7 +3038,7 @@ Spider_Drake,L,Dragon,,LE,18 (natural),136 (16d10+48),19,13,17,7,16,15,9,4
 Spider_Golem,L,Construct,,,20 (natural),210 (20d10+100),24,12,20,3,11,1,18,6
 Spider_of_Leng,L,Aberration,,CE,15 (natural),144 (17d10+51),14,16,16,17,10,10,7,3
 Spider_Thief,S,Construct,,,13 (natural),54 (12d6+12),10,12,12,3,10,1,2,2
-"Spider,_Red-banded_Line",T,Beast,,,13,2 (1d4),4,16,10,1,10,2,0.25,2
+Red-banded_Line_Spider,T,Beast,,,13,2 (1d4),4,16,10,1,10,2,0.25,2
 Spined_Devil,S,Fiend,Devil,LE,13 (natural),22 (5d6+5),10,15,12,11,14,8,2,2
 Spinosaurus,G,Beast,,,15 (natural),231 (14d20+84),27,9,22,2,11,10,13,5
 Spire_Walker,T,Fey,,CN,16 (natural),38 (11d4+22),3,18,14,11,10,14,3,2
@@ -3196,16 +3196,16 @@ Tentacled_Horror,H,Aberration,,CE,17 (natural),171 (18d12+54),22,8,16,7,10,16,11
 Teratashia,L,Fiend,Demon,CE,18 (natural),161 (19d10+76),17,19,18,19,15,18,15,5
 Terror_Bird,L,Beast,,,12 (natural),65 (10d8+20),18,12,14,3,12,10,2,2
 Tetomatli,L,Construct,,CE,16 (natural),152 (16d10+64),20,10,18,5,11,3,8,3
-"Tetzimoc,_Primal_Death_(spikey)",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Primal_Death_Tetzimoc,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Thalasskoptis,L,Fiend,Demon,CE,18 (natural),168 (16d10+80),19,18,20,15,17,18,10,4
-"Thaumaturmite,_Greater",M,Monstrosity,,,15,27 (6d8),13,17,10,3,5,5,5,3
-"Thaumaturmite,_Lesser",S,Monstrosity,,,10,10 (3d6),10,15,10,3,5,5,1,2
+Greater_Thaumaturmite,M,Monstrosity,,,15,27 (6d8),13,17,10,3,5,5,5,3
+Lesser_Thaumaturmite,S,Monstrosity,,,10,10 (3d6),10,15,10,3,5,5,1,2
 Thavius_Kreeg,M,Humanoid,Human,LE,10,40 (9d8),12,10,11,15,18,16,0.5,2
 Thayan_Apprentice,M,Humanoid,Human, non-Good,12 (15 with mage armor),27 (5d8+5),10,14,12,15,13,11,2,2
 Thayan_Warrior,M,Humanoid,Human, non-Good,"16 (chain shirt, shield)",52 (8d8+16),16,13,14,10,11,11,2,2
 The_Angry,M,Monstrosity,Sorrowsworn,NE,18 (natural),255 (30d8+120),17,10,19,8,13,6,13,5
 The_Barbed,S,Humanoid,Kobold,LE,13,44 (8d8+8),14,16,12,8,10,11,1,2
-"The_Curator,_Hell's_Collector",L,Fiend,Devil,LE,18 (natural),337 (27d10+189),29,12,25,26,24,26,24,7
+The_Curator_Hell's_Collector,L,Fiend,Devil,LE,18 (natural),337 (27d10+189),29,12,25,26,24,26,24,7
 The_Hungry,M,Monstrosity,Sorrowsworn,NE,17 (natural),225 (30d8+90),19,10,17,6,11,6,11,4
 The_Laughing,M,Fey,,LE,11,5 (1d8+1),11,13,12,10,12,7,0.25,2
 The_Lonely,M,Monstrosity,Sorrowsworn,NE,16 (natural),112 (15d8+45),16,12,17,6,11,6,9,4
@@ -3237,7 +3237,7 @@ Tiamat,G,Fiend,,CE,25 (natural),615 (30d20+300),30,10,30,26,26,28,30,9
 Tidehunter,H,Monstrosity,,,15 (natural),133 (14d10+56),19,14,18,5,12,5,6,3
 Tiger,L,Beast,,,12,37 (5d10+10),17,15,14,3,12,8,1,2
 Tiger_of_Legend,H,Beast,,,13 (natural),172 (15d12+75),20,16,20,3,14,10,10,4
-"Time_Elemental,_Common",M,Elemental,,N,17 (natural),97 (13d8+39),16,20,16,14,14,11,7,3
+Common_Time_Elemental,M,Elemental,,N,17 (natural),97 (13d8+39),16,20,16,14,14,11,7,3
 Time_Mephit,S,Elemental,,NE,10,31 (7d6+7),9,9,9,10,18,9,0.5,2
 Timingila,G,Monstrosity,Titan,NE,18 (natural),232 (15d20+75),28,5,21,8,7,14,15,5
 Titanboa,G,Beast,,,14 (natural),232 (15d20+75),26,10,20,3,10,3,12,4
@@ -3268,7 +3268,7 @@ Trapper,L,Monstrosity,,,13 (natural),85 (10d10+30),17,10,17,2,13,4,3,2
 Treacle,T,Ooze,,,13 (natural),22 (4d4+12),4,6,17,1,1,10,0.25,2
 Treant,H,Plant,,CG,16 (natural),138 (12d12+60),23,8,21,12,16,12,9,4
 Treant_Sapling,L,Plant,,CG,14 (natural),45 (6d10+12),17,8,15,12,12,10,2,2
-"Treant,_Weeping",H,Plant,,N,17 (natural),105 (10d12+40),21,8,20,12,16,11,6,3
+Weeping_Treant,H,Plant,,N,17 (natural),105 (10d12+40),21,8,20,12,16,11,6,3
 Tree_Blight,H,Plant,,NE,15 (natural),92 (8d12+40),23,10,20,6,10,3,7,3
 Tree_Skinner,M,Fiend,,CE,13,38 (7d8+7),10,16,13,14,15,18,2,2
 Tressym,T,Beast,,CN,12,5 (2d4),3,15,10,11,12,12,0,2
@@ -3294,7 +3294,7 @@ Tsathar,M,Monstrosity,Tsathar,CE,13 (leather),16 (3d8+3),13,14,12,12,12,10,0.5,2
 Tsathar_Monk,M,Monstrosity,Tsathar,CE,14,52 (8d8+16),15,18,14,12,16,11,2,2
 Tsathar_Priest,M,Monstrosity,Tsathar,CE,14 (frog hide),52 (8d8+16),10,14,14,12,17,11,4,2
 Tsathar_Sorcerer,M,Monstrosity,Tsathar,CE,14 (frog hide),27 (5d8+5),10,14,13,12,11,15,2,2
-"Tsthogga,_the_Frog_God",G,Fiend,Demon,CE,20 (natural),546 (28d20+252),29,15,28,19,18,23,35,10
+Tsthogga_the_Frog_God,G,Fiend,Demon,CE,20 (natural),546 (28d20+252),29,15,28,19,18,23,35,10
 Tsucora_Quori,M,Aberration,,LE,16 (natural),68 (8d8+32),17,14,18,14,14,16,7,3
 Tulpa,M,Undead,,NE,13,39 (6d8+12),14,16,14,10,14,9,4,2
 Tunnel_Prawn,S,Beast,,,14 (natural),7 (2d6),12,14,11,1,9,3,0.125,2
@@ -3315,7 +3315,7 @@ Typhon,G,Fiend,Demon,CE,21 (natural),314 (17d20+136),30,14,26,17,22,19,22,7
 Tyrannosaurus_Rex,H,Beast,,,13 (natural),136 (13d12+52),25,10,19,2,12,9,8,3
 Tyrannosaurus_Rex_of_Legend,G,Beast,,,13 (natural),379 (23d20+138),30,10,22,2,20,9,17,6
 Tyrannosaurus_Zombie,H,Undead,,,11 (natural),135 (13d12+52),25,6,19,1,3,5,8,3
-"Tyreus,_Illusionist",M,Humanoid,Human,CE,13 (16 with mage armor),156 (24d8+48),10,16,14,20,15,16,13,5
+Tyreus_Illusionist,M,Humanoid,Human,CE,13 (16 with mage armor),156 (24d8+48),10,16,14,20,15,16,13,5
 Tzepharion,L,Fiend,Devil,LE,16 (natural),110 (13d10+39),19,14,16,5,18,13,8,3
 Udaak,G,Fiend,,NE,18 (natural),165 (10d20+60),26,14,22,3,11,10,16,5
 Ulder_Ravengard,M,Humanoid,Human,N,"20 (plate, shield)",112 (15d8+45),17,14,16,11,10,17,5,3
@@ -3547,7 +3547,7 @@ Woodwose,M,Humanoid,,CN,13 (natural),27 (6d8),16,12,11,10,14,8,0.5,2
 Wooly_Mammoth,H,Beast,,,13 (natural),73 (7d12+28),22,9,18,3,13,6,5,3
 Wooly_Rhinoceros,L,Beast,,,14 (natural),172 (15d10+90),21,10,22,3,13,2,6,3
 Worg,L,Monstrosity,,NE,13 (natural),26 (4d10+4),16,13,13,7,11,8,0.5,2
-"Worg,_Fang_of_the_Great_Wolf",L,Monstrosity,,NE,14 (natural),65 (10d10+10),16,13,13,9,13,8,3,2
+Worg_Fang_of_the_Great_Wolf,L,Monstrosity,,NE,14 (natural),65 (10d10+10),16,13,13,9,13,8,3,2
 Worldspawn_Scout,M,Humanoid," Race, Titan",,13 (leather),299 (23d8+196),11,18,22,11,23,16,12,4
 Wormhearted_Suffragan,M,Undead,,CE,12,97 (13d8+39),10,14,16,11,16,8,5,3
 Wrack_Spawn,M,Fiend,,CE,11 (natural),22 (3d8+9),13,8,17,7,10,9,0.5,2
@@ -3649,7 +3649,7 @@ Yuan-Ti_Pit_Master,M,Monstrosity,"Shapechanger, Yuan-Ti",NE,14 (natural),88 (16d
 Yuan-Ti_Pureblood,M,Humanoid,Yuan-Ti,NE,11,40 (9d8),11,12,11,13,12,14,1,2
 Yumerai,M,Fey,,N,13,65 (10d8+20),13,17,14,13,14,16,2,2
 Yusadrayl,S,Humanoid,Kobold,LE,12 (15 with mage armor),16 (3d6+6),8,15,14,10,10,16,1,2
-"Zacama,_Primal_Calamity_(3-headed_T-rex)",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Zacama_Primal_Calamity,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Zakya_Rakshasa,M,Fiend,,LE,"18 (scale mail, shield)",59 (7d8+28),18,14,18,12,13,11,5,3
 Zalikum,H,Construct,,NE,16 (natural),103 (9d12+45),19,17,21,8,10,15,7,3
 Zanskaren_Viper,L,Beast,,,14 (natural),38 (4d10+16),12,11,18,2,13,2,1,2
@@ -3660,7 +3660,7 @@ Zariel,L,Fiend,Devil,LE,21 (natural),580 (40d10+360),27,24,28,26,27,30,26,8
 Zashtii,M,Undead,,,16 (natural),112 (15d8+45),17,18,17,18,16,18,13,5
 Zegana,M,Humanoid,Merfolk,LN,16 (natural),130 (20d8+40),11,14,14,20,18,16,16,5
 Zeitgeist,M,Humanoid,,CN,14 (16 in darting form),82 (11d8+33),17,18,16,12,10,6,6,3
-"Zetalpa,_Primal_Dawn",G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
+Zetalpa_Primal_Dawn,G,Monstrosity,Titan,,25 (natural),676 (33d20+330),30,11,30,3,11,11,30,9
 Zimwi,M,Giant,,CE,17 (natural),76 (9d8+36),13,18,19,6,9,7,4,2
 Zinder,M,Humanoid,Half Dragon,LG,13 (natural),110 (17d8+34),14,10,14,16,15,18,8,3
 Ziphius,G,Aberration,,N,16 (natural),135 (10d20+30),19,13,16,9,13,4,8,3
