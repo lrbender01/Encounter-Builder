@@ -2,7 +2,7 @@
 
 import json, os, random, csv, math
 import tabulate, itertools, sys, tty, termios
-import traceback # Debugging traceback.print_exc()
+import traceback # Debugging traceback.print_exc()s
 
 # Players list
 players_list = []
@@ -155,7 +155,7 @@ def load_json(file, combatants, db):
         raise Exception(f'opening {file}.json raised an exception')
 
 # Load monster database from csv
-def populate_db(file, db):
+def populate_monsters(file, db):
     # Open up file and read fields
     with open(file, newline='') as f:
         reader = csv.reader(f, delimiter=',', quotechar='"')
@@ -194,6 +194,19 @@ def populate_db(file, db):
                 print(f'[ERROR] can\'t load in {monster[0]}')
                 input('<enter> to continue')
 
+def populate_spells(file, db):
+    try:
+        # Get file handle and read in
+        file_handle = open(file)
+        file_json = json.load(file_handle)
+        file_handle.close()
+
+        # Read in every spell
+        for spell in file_json:
+            db[spell['name']] = spell
+    except:
+        print('[ERROR] problem loading in spells list')
+
 # Draw all combatants in table
 def draw_all(combatants):
     # Set table columns
@@ -216,7 +229,7 @@ def draw_all(combatants):
     print(tabulate.tabulate(
         table,
         headers='firstrow',
-        tablefmt='pretty',
+        tablefmt='fancy_grid',
         showindex=turn_nums,
         stralign='left'
     ))
@@ -647,7 +660,7 @@ def sort_combatants(fields, combatants):
         print('usage: sort <name|roll|ac|type')
 
 # Query db and show results in table
-def search_db(fields, db):
+def search_monsters(fields, db):
     try:
         if len(fields) < 3:
             raise Exception('improper usage')
@@ -707,7 +720,7 @@ def search_db(fields, db):
             print(tabulate.tabulate(
                 table,
                 headers='firstrow',
-                tablefmt='pretty',
+                tablefmt='fancy_grid',
                 stralign='left'
             ))
         else:
@@ -715,11 +728,76 @@ def search_db(fields, db):
     except:
         print('usage: search <name|cr> <value>')
 
+def search_spells(fields, db):
+    try:
+        matches = []
+        for spell in db:
+            # TODO: check matching fields and whatnot
+            matches.append(db[spell])
+
+        if len(matches) != 0:
+            table = [['Attributes', 'Description']]
+            for m in matches:
+                # Parse Description TODO
+                description = m['description']
+
+                n = 50
+                count = 0
+                start = 0
+                end = 0
+                chunks = []
+                for i in range(len(description)):
+                    count = count + 1
+                    if description[i] == ' ':
+                        end = i
+                    if count == n:
+                        chunks.append(description[start:end])
+                        count = 0
+                        start = i
+
+                final_description = '\n'.join(chunks)
+                # print(final_description)
+
+                # Parse Attributes
+
+                title = m['name']
+
+                level = f"Level {m['level']} {m['school']}"
+                if m['level'] == 'cantrip':
+                    level = 'Cantrip'
+
+                time = f"Casting Time: {m['casting_time']}"
+
+                spell_range = f"Range: {m['range']}"
+
+                components_raw = f"Components: {m['components']['raw']}"
+                components = ''
+
+                duration = m['duration']
+
+                classes = ', '.join(m['classes'])
+
+                attributes = f'{title}\n{level}\n{time}\n{spell_range}\n{components}\n{duration}\n{classes}'
+
+                table.append([attributes, final_description])
+
+            print(tabulate.tabulate(
+                table,
+                headers='firstrow',
+                tablefmt='fancy_grid',
+                stralign='left'
+            ))
+    except:
+        traceback.print_exc()
+        print('problem')
+
 # Main entrypoint
 def main():
-    # Populate database
+    # Populate databases
     monster_db = {}
-    populate_db('data/monsters.csv', monster_db)
+    populate_monsters('data/monsters.csv', monster_db)
+    spell_db = {}
+    populate_spells('data/spells.json', spell_db)
 
     # Start empty lists for hist and combatants
     hist = []
@@ -824,7 +902,10 @@ def main():
                 sort_combatants(command_fields, combatants)
 
             elif buffer.startswith('search'):
-                search_db(command_fields, monster_db)
+                search_monsters(command_fields, monster_db)
+
+            elif buffer.startswith('spell'): # TODO: add help
+                search_spells(command_fields, spell_db)
 
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')
