@@ -1,0 +1,61 @@
+{
+    "characters": [],
+    "enemies": [
+        {
+            "name": "Xolkin",
+            "init_mod": 3,
+            "health": 60,
+            "ac": "15",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_2",
+            "init_mod": 1,
+            "health": 10,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_3",
+            "init_mod": 1,
+            "health": 12,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_4",
+            "init_mod": 1,
+            "health": 9,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_5",
+            "init_mod": 1,
+            "health": 6,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_6",
+            "init_mod": 1,
+            "health": 7,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Bandit_7",
+            "init_mod": 1,
+            "health": 6,
+            "ac": "12",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Kella",
+            "init_mod": 2,
+            "health": 23,
+            "ac": "12",
+            "type": "Humanoid"
+        }
+    ]
+}

@@ -1,0 +1,159 @@
+{
+    "characters": [],
+    "enemies": [
+        {
+            "name": "Gurrash",
+            "init_mod": 1,
+            "health": 60,
+            "ac": "16",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_2",
+            "init_mod": 1,
+            "health": 15,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_3",
+            "init_mod": 1,
+            "health": 20,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_4",
+            "init_mod": 1,
+            "health": 8,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_5",
+            "init_mod": 1,
+            "health": 17,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_6",
+            "init_mod": 1,
+            "health": 17,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_7",
+            "init_mod": 1,
+            "health": 20,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_8",
+            "init_mod": 1,
+            "health": 15,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_9",
+            "init_mod": 1,
+            "health": 17,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_10",
+            "init_mod": 1,
+            "health": 18,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_11",
+            "init_mod": 1,
+            "health": 15,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_12",
+            "init_mod": 1,
+            "health": 10,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_13",
+            "init_mod": 1,
+            "health": 13,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_14",
+            "init_mod": 1,
+            "health": 14,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_15",
+            "init_mod": 1,
+            "health": 16,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_16",
+            "init_mod": 1,
+            "health": 17,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_17",
+            "init_mod": 1,
+            "health": 13,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_18",
+            "init_mod": 1,
+            "health": 16,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_19",
+            "init_mod": 1,
+            "health": 16,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_20",
+            "init_mod": 1,
+            "health": 14,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Orc_21",
+            "init_mod": 1,
+            "health": 15,
+            "ac": "13",
+            "type": "Humanoid"
+        },
+        {
+            "name": "Norga",
+            "init_mod": 1,
+            "health": 44,
+            "ac": "16",
+            "type": "Humanoid"
+        }
+    ]
+}
