@@ -728,64 +728,191 @@ def search_monsters(fields, db):
     except:
         print('usage: monster <name|cr> <value>')
 
-def search_spells(fields, db):
+def search_spells(fields, db): # TODO: comment
     try:
-        # TODO: come up with overarching design for searching spells
-        # should it be integrated with the monster search?
-        # should you be able to pull up multiple by name?
-        # should you be able to pull up multiple by school 
-        # should you be able to pull up multiple by class?
-        # should you be able to pull up multiple by level
-        # it seems like we just need to be able to searh by field
-            # what if this bitch spawned a new control loop just for searching spells?
-        # fields: class, level, name, school (search)
-        # pertinent info: casting time, classes, components, description, duration, level, name, range, ritual, school
-            # TODO: how do we lay this shit out?
-        matches = []
-        for spell in db:
-            # TODO: check matching fields and whatnot
-            matches.append(db[spell])
-            break # TODO: remove
+        if len(fields) < 3:
+            raise Exception('improper usage')
 
+        matches = []
+        remove_buffer = []
+        skip = False
+
+        for i in range(len(fields)):
+            if skip:
+                skip = False
+                continue
+
+            f = fields[i]
+
+            if len(matches) != 0: # TODO: add ritual (no second field)
+                if f.lower() == 'class':
+                    for spell in matches:
+                        found = False
+                        for player_class in spell['classes']:
+                            if player_class.lower().find(fields[i + 1].lower()) != -1:
+                                found = True
+                        if not found:
+                            remove_buffer.append(spell)
+                            skip = True
+                elif f.lower() == 'level':
+                    for spell in matches:
+                        if spell['level'] != fields[i + 1]:
+                            remove_buffer.append(spell)
+                            skip = True
+                elif f.lower() == 'name':
+                    for spell in matches:
+                        if spell['name'].lower().find(fields[i + 1].lower()) == -1:
+                            remove_buffer.append(spell)
+                            skip = True                        
+                elif f.lower() == 'school':
+                    for spell in matches:
+                        if spell['school'].lower().find(fields[i + 1].lower()) == -1:
+                            remove_buffer.append(spell)
+                            skip = True
+                elif f.lower() == 'sort':
+                    continue
+                    skip = True
+                    # TODO: figure out and implement sorting types
+                for e in remove_buffer:
+                    if e in matches:
+                        matches.remove(e)
+            else:
+                if f.lower() == 'class':
+                    for entry in db:
+                        spell = db[entry]
+                        for player_class in spell['classes']:
+                            if player_class.lower().find(fields[i + 1].lower()) != -1:
+                                matches.append(spell)
+                                skip = True
+                elif f.lower() == 'level':
+                    for entry in db:
+                        spell = db[entry]
+                        if spell['level'] == fields[i + 1]:
+                            matches.append(spell)
+                            skip = True
+                elif f.lower() == 'name':
+                    for entry in db:
+                        spell = db[entry]
+                        if spell['name'].lower().find(fields[i + 1].lower()) != -1:
+                            matches.append(spell)
+                            skip = True
+                elif f.lower() == 'school':
+                    for entry in db:
+                        spell = db[entry]
+                        if spell['school'].lower().find(fields[i + 1].lower()) != -1:
+                            matches.append(spell)
+                            skip = True
+                elif f.lower() == 'sort':
+                    continue
+                    skip = True
+                    # TODO: figure out sorting types
+
+        # DEBUG
+        '''matches = []
+        for entry in db:
+            spell = db[entry]
+            if spell['description'].find('|') != -1:
+                matches.append(spell)'''
+        # TODO: do sorting here (have a lambda function or something)
+        
         if len(matches) != 0:
             table = [['Attributes', 'Description']]
             for m in matches:
-                description = m['description'].replace('\n\n', ' ')
+                description = m['description'].replace('\n\n', ' ') # TODO: find a way to leverage the paragraph breaks
 
+                # Parse Description
+                # TODO: parse tables (roll for result)
                 line_length = 50
                 lines = ['']
                 words = description.split(' ')
 
+                first = True
                 for word in words:
-                    if len(lines[-1]) + len(word) + 1 >= line_length:
-                        lines.append(word)
+                    if len(lines[-1]) + len(word) + 1 >= line_length or first:
+                        first = False
+                        lines.append(word) # Start a new line
                     else:
-                        lines[-1] = f'{lines[-1]} {word}'
-
+                        lines[-1] = f'{lines[-1]} {word}' # Append to the last line
 
                 final_description = '\n'.join(lines)
-                # print(final_description)
 
                 # Parse Attributes
-
                 title = m['name']
 
-                level = f"Level {m['level']} {m['school']}"
-                if m['level'] == 'cantrip':
-                    level = 'Cantrip'
+                school = m['school']
+                school = school[0].upper() + school[1:]
 
-                time = f"Casting Time: {m['casting_time']}"
+                level = f"Level {m['level']}, {school}"
+                if m['level'] == 'cantrip':
+                    level = f'Cantrip, {school}'
+
+                # Parse Casting Time
+                time = m['casting_time']
+                requirement = m['casting_time']
+                casting_time = ''
+                if time.find(',') != -1:
+                    casting_time = time.split(', ')[0]
+                    requirement = ' '.join(time.split(', ')[1:])
+                    requirement = requirement[0].upper() + requirement[1:]
+
+                    # Parse Requirement
+                    line_length = 30
+                    lines = ['']
+                    words = requirement.split(' ')
+
+                    first = True
+                    for word in words:
+                        if len(lines[-1]) + len(word) + 1 >= line_length or first:
+                            first = False
+                            lines.append(word)
+                        else:
+                            lines[-1] = f'{lines[-1]} {word}'
+
+                    requirement = '\n'.join(lines)                                        
+
+                time = f'Casting Time: {casting_time}{requirement}'
+
+                # Ritual Tag
+                ritual = 'Ritual: '
+                if m['ritual']:
+                    ritual = ritual + 'Yes'
+                else:
+                    ritual = ritual + 'No'
 
                 spell_range = f"Range: {m['range']}"
 
-                components_raw = f"Components: {m['components']['raw']}"
-                components = ''
+                verbal = m['components']['verbal']
+                somatic = m['components']['somatic']
+                material = m['components']['material']
 
-                duration = m['duration']
+                components = 'Components: '
+                if verbal:
+                    components = components + 'V'
+                if somatic:
+                    if verbal:
+                        components = components + ', S'
+                    else:
+                        components = components + 'S'
+                if material:
+                    if verbal or somatic:
+                        components = components + ', M'
+                    else:
+                        components = components + 'M'
 
-                classes = ', '.join(m['classes'])
+                duration = f"Duration: {m['duration']}"
 
-                attributes = f'{title}\n{level}\n{time}\n{spell_range}\n{components}\n{duration}\n{classes}'
+                classes = []
+                for c in m['classes']:
+                    classes.append(c[0].upper() + c[1:])
+
+                lines = []
+                for i in range(0, len(classes), 2):
+                    lines.append(', '.join(classes[i:i + 2]))
+
+                classes_joined = '\n'.join(lines)
+                classes_string = f"Classes: {classes_joined}"
+
+                attributes = f'{title}\n{level}\n\n{ritual}\n{time}\n\n{spell_range}\n{components}\n{duration}\n\n{classes_string}'
 
                 table.append([attributes, final_description])
 
