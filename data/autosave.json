@@ -3,46 +3,38 @@
         {
             "name": "Paul",
             "init_mod": 2,
-            "health": 20,
+            "health": 26,
             "ac": 12,
             "type": "Player"
         },
         {
-            "name": "Daniel",
+            "name": "Gabby",
             "init_mod": -1,
-            "health": 30,
-            "ac": 18,
+            "health": 36,
+            "ac": 14,
             "type": "Player"
         },
         {
             "name": "Lorin",
             "init_mod": 0,
-            "health": 24,
+            "health": 31,
             "ac": 13,
             "type": "Player"
         },
         {
             "name": "Briland",
             "init_mod": 3,
-            "health": 18,
+            "health": 23,
             "ac": 16,
             "type": "Player"
         },
         {
-            "name": "Gabby",
+            "name": "Daniel",
             "init_mod": -1,
-            "health": 26,
-            "ac": 14,
+            "health": 40,
+            "ac": 18,
             "type": "Player"
         }
     ],
-    "enemies": [
-        {
-            "name": "Black_Pudding",
-            "init_mod": -3,
-            "health": 34,
-            "ac": "7",
-            "type": "Ooze"
-        }
-    ]
+    "enemies": []
 }

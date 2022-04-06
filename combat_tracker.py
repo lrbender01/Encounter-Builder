@@ -455,7 +455,7 @@ def remove_from_encounter(fields, combatants):
                     if c.name.lower().startswith(n.lower()):
                         remove_buffer.append(c)
                 else:
-                    if c.name.lower().startswith(n.lower()):
+                    if c.name.lower() == n.lower(): # CHANGED THIS TO FORCE EXACT MATCH
                         remove_buffer.append(c)
                         break
 
@@ -623,7 +623,7 @@ def print_help(command):
         'shell'     :   'shell\n\texecute shell commands\n\tusage: shell <command>',
         'bash'      :   'bash\n\tstart a bash subprocess\n\tusage: bash',
         'sort'      :   'sort\n\tsort all combatants according to field\n\tusage: sort <name|roll|ac|type>',
-        'search'    :   'search\n\tsearch database by name or cr, multiple can be combined\n\tusage: search <name|cr> <value>'
+        'monster'    :   'monster\n\tsearch monster database by name or cr, multiple can be combined\n\tusage: monster <name|cr> <value>'
     }
 
     command_list = list(usage_dict.keys())
@@ -678,7 +678,7 @@ def search_monsters(fields, db):
             if len(matches) != 0:
                 if f.lower() == 'name':
                     for name,cr in matches:
-                        if not name.lower().find(fields[i + 1].lower())  != -1:
+                        if not name.lower().find(fields[i + 1].lower()) != -1:
                             remove_buffer.append((name, cr))
                             skip = True
                 elif f.lower() == 'cr':
@@ -691,7 +691,7 @@ def search_monsters(fields, db):
             else:
                 if f.lower() == 'name':
                     for name in db:
-                        if name.lower().find(fields[i + 1].lower())  != -1:
+                        if name.lower().find(fields[i + 1].lower()) != -1:
                             matches.append((name, db[name]['cr']))
                             skip = True
                 elif f.lower() == 'cr':
@@ -726,36 +726,44 @@ def search_monsters(fields, db):
         else:
             print('no matches')
     except:
-        print('usage: search <name|cr> <value>')
+        print('usage: monster <name|cr> <value>')
 
 def search_spells(fields, db):
     try:
+        # TODO: come up with overarching design for searching spells
+        # should it be integrated with the monster search?
+        # should you be able to pull up multiple by name?
+        # should you be able to pull up multiple by school 
+        # should you be able to pull up multiple by class?
+        # should you be able to pull up multiple by level
+        # it seems like we just need to be able to searh by field
+            # what if this bitch spawned a new control loop just for searching spells?
+        # fields: class, level, name, school (search)
+        # pertinent info: casting time, classes, components, description, duration, level, name, range, ritual, school
+            # TODO: how do we lay this shit out?
         matches = []
         for spell in db:
             # TODO: check matching fields and whatnot
             matches.append(db[spell])
+            break # TODO: remove
 
         if len(matches) != 0:
             table = [['Attributes', 'Description']]
             for m in matches:
-                # Parse Description TODO
-                description = m['description']
+                description = m['description'].replace('\n\n', ' ')
 
-                n = 50
-                count = 0
-                start = 0
-                end = 0
-                chunks = []
-                for i in range(len(description)):
-                    count = count + 1
-                    if description[i] == ' ':
-                        end = i
-                    if count == n:
-                        chunks.append(description[start:end])
-                        count = 0
-                        start = i
+                line_length = 50
+                lines = ['']
+                words = description.split(' ')
 
-                final_description = '\n'.join(chunks)
+                for word in words:
+                    if len(lines[-1]) + len(word) + 1 >= line_length:
+                        lines.append(word)
+                    else:
+                        lines[-1] = f'{lines[-1]} {word}'
+
+
+                final_description = '\n'.join(lines)
                 # print(final_description)
 
                 # Parse Attributes
@@ -789,7 +797,7 @@ def search_spells(fields, db):
             ))
     except:
         traceback.print_exc()
-        print('problem')
+        print('problem') # TODO make this not suck
 
 # Main entrypoint
 def main():
@@ -901,11 +909,12 @@ def main():
             elif buffer.startswith('sort'): # Sort combatants
                 sort_combatants(command_fields, combatants)
 
-            elif buffer.startswith('search'):
+            elif buffer.startswith('monster'):
                 search_monsters(command_fields, monster_db)
 
             elif buffer.startswith('spell'): # TODO: add help
                 search_spells(command_fields, spell_db)
+                # TODO: finish this because it cuts stuff off, make sure we have the right fields and everything
 
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')
