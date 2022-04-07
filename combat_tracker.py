@@ -623,7 +623,8 @@ def print_help(command):
         'shell'     :   'shell\n\texecute shell commands\n\tusage: shell <command>',
         'bash'      :   'bash\n\tstart a bash subprocess\n\tusage: bash',
         'sort'      :   'sort\n\tsort all combatants according to field\n\tusage: sort <name|roll|ac|type>',
-        'monster'    :   'monster\n\tsearch monster database by name or cr, multiple can be combined\n\tusage: monster <name|cr> <value>'
+        'monster'   :   'monster\n\tsearch monster database by name or cr, multiple can be combined\n\tusage: monster <name|cr> <value>',
+        'spell'     :   'spell\n\tsearch spell database by class, level, name, school, and/or ritual\n\tusage: spell [class <class>] [classes] [level <level>] [school <school>] [schools] [ritual] [all]'
     }
 
     command_list = list(usage_dict.keys())
@@ -730,7 +731,7 @@ def search_monsters(fields, db):
 
 def search_spells(fields, db): # TODO: comment
     try:
-        if len(fields) < 3:
+        if len(fields) < 2:
             raise Exception('improper usage')
 
         matches = []
@@ -744,7 +745,7 @@ def search_spells(fields, db): # TODO: comment
 
             f = fields[i]
 
-            if len(matches) != 0: # TODO: add ritual (no second field)
+            if len(matches) != 0:
                 if f.lower() == 'class':
                     for spell in matches:
                         found = False
@@ -754,6 +755,9 @@ def search_spells(fields, db): # TODO: comment
                         if not found:
                             remove_buffer.append(spell)
                             skip = True
+                elif f.lower() == 'classes':
+                    print('Bard, Cleric\nDruid, Paladin\nRanger, Sorcerer\nWarlock, Wizard')
+                    return
                 elif f.lower() == 'level':
                     for spell in matches:
                         if spell['level'] != fields[i + 1]:
@@ -769,10 +773,18 @@ def search_spells(fields, db): # TODO: comment
                         if spell['school'].lower().find(fields[i + 1].lower()) == -1:
                             remove_buffer.append(spell)
                             skip = True
-                elif f.lower() == 'sort':
-                    continue
-                    skip = True
-                    # TODO: figure out and implement sorting types
+                elif f.lower() == 'schools':
+                    print('Conjuration\nNecromancy\nEvocation\nAbjuration\nTransmutation\nDivination\nEnchantment\nIllusion')
+                    return
+                elif f.lower() == 'ritual':
+                    for spell in matches:
+                        if not spell['ritual']:
+                            remove_buffer.append(spell)
+                elif f.lower() == 'all':
+                    matches = []
+                    for entry in db:
+                        matches.append(db[entry])
+                    break
                 for e in remove_buffer:
                     if e in matches:
                         matches.remove(e)
@@ -784,6 +796,9 @@ def search_spells(fields, db): # TODO: comment
                             if player_class.lower().find(fields[i + 1].lower()) != -1:
                                 matches.append(spell)
                                 skip = True
+                elif f.lower() == 'classes':
+                    print('Bard, Cleric\nDruid, Paladin\nRanger, Sorcerer\nWarlock, Wizard')
+                    return
                 elif f.lower() == 'level':
                     for entry in db:
                         spell = db[entry]
@@ -802,33 +817,44 @@ def search_spells(fields, db): # TODO: comment
                         if spell['school'].lower().find(fields[i + 1].lower()) != -1:
                             matches.append(spell)
                             skip = True
-                elif f.lower() == 'sort':
-                    continue
-                    skip = True
-                    # TODO: figure out sorting types
-
-        # DEBUG
-        '''matches = []
-        for entry in db:
-            spell = db[entry]
-            if spell['description'].find('|') != -1:
-                matches.append(spell)'''
-        # TODO: do sorting here (have a lambda function or something)
+                elif f.lower() == 'schools':
+                    print('Conjuration, Necromancy\nEvocation, Abjuration\nTransmutation, Divination\nEnchantment, Illusion')
+                    return
+                elif f.lower() == 'ritual':
+                    for entry in db:
+                        spell = db[entry]
+                        if spell['ritual']:
+                            matches.append(spell)
+                elif f.lower() == 'all':
+                    for entry in db:
+                        matches.append(db[entry])
+                    break
         
         if len(matches) != 0:
             table = [['Attributes', 'Description']]
             for m in matches:
-                description = m['description'].replace('\n\n', ' ') # TODO: find a way to leverage the paragraph breaks
+                description = m['description'] # TODO: include the higher_levels field
 
                 # Parse Description
-                # TODO: parse tables (roll for result)
-                line_length = 50
+                line_length = 71
                 lines = ['']
                 words = description.split(' ')
 
                 first = True
                 for word in words:
-                    if len(lines[-1]) + len(word) + 1 >= line_length or first:
+                    if word.find('\n') != -1:
+                        parts = word.split('\n')
+
+                        # Append first one or make new line
+                        if len(lines[-1]) + len(parts[0]) + 1 >= line_length:
+                            lines.append(parts[0])
+                        else:
+                            lines[-1] = f'{lines[-1]} {parts[0]}'
+                        
+                        # Make new lines for all others
+                        for i in range(len(parts) - 1):
+                            lines.append(parts[i + 1])
+                    elif len(lines[-1]) + len(word) + 1 >= line_length or first:
                         first = False
                         lines.append(word) # Start a new line
                     else:
@@ -922,9 +948,13 @@ def search_spells(fields, db): # TODO: comment
                 tablefmt='fancy_grid',
                 stralign='left'
             ))
+
+            print(f'{len(table)} Results')
+        else:
+            print('No Results')
+            raise Exception('empty results')
     except:
-        traceback.print_exc()
-        print('problem') # TODO make this not suck
+        print('usage: spell [class <class>] [classes] [level <level>] [school <school>] [schools] [ritual] [all]')
 
 # Main entrypoint
 def main():
@@ -1036,12 +1066,11 @@ def main():
             elif buffer.startswith('sort'): # Sort combatants
                 sort_combatants(command_fields, combatants)
 
-            elif buffer.startswith('monster'):
+            elif buffer.startswith('monster'): # Search monsters
                 search_monsters(command_fields, monster_db)
 
-            elif buffer.startswith('spell'): # TODO: add help
+            elif buffer.startswith('spell'): # Search spells
                 search_spells(command_fields, spell_db)
-                # TODO: finish this because it cuts stuff off, make sure we have the right fields and everything
 
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')
