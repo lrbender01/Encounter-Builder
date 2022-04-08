@@ -764,8 +764,9 @@ def search_spells(fields, db): # TODO: comment
                             remove_buffer.append(spell)
                             skip = True
                 elif f.lower() == 'name':
+                    name = fields[i + 1].lower().replace('_', ' ').lower()
                     for spell in matches:
-                        if spell['name'].lower().find(fields[i + 1].lower()) == -1:
+                        if spell['name'].lower().find(name) == -1:
                             remove_buffer.append(spell)
                             skip = True                        
                 elif f.lower() == 'school':
@@ -806,9 +807,10 @@ def search_spells(fields, db): # TODO: comment
                             matches.append(spell)
                             skip = True
                 elif f.lower() == 'name':
+                    name = fields[i + 1].lower().replace('_', ' ').lower()
                     for entry in db:
                         spell = db[entry]
-                        if spell['name'].lower().find(fields[i + 1].lower()) != -1:
+                        if spell['name'].lower().find(name) != -1:
                             matches.append(spell)
                             skip = True
                 elif f.lower() == 'school':
@@ -833,7 +835,9 @@ def search_spells(fields, db): # TODO: comment
         if len(matches) != 0:
             table = [['Attributes', 'Description']]
             for m in matches:
-                description = m['description'] # TODO: include the higher_levels field
+                description = m['description']
+                if 'higher_levels' in m:
+                    description = m['description'] + f'\n\n{m["higher_levels"]}'
 
                 # Parse Description
                 line_length = 71
@@ -949,7 +953,7 @@ def search_spells(fields, db): # TODO: comment
                 stralign='left'
             ))
 
-            print(f'{len(table)} Results')
+            print(f'{len(table) - 1} Result(s)')
         else:
             print('No Results')
             raise Exception('empty results')
