@@ -960,6 +960,17 @@ def search_spells(fields, db): # TODO: comment
     except:
         print('usage: spell [class <class>] [classes] [level <level>] [school <school>] [schools] [ritual] [all]')
 
+def manage_spellbook(fields, db): # TODO: implement
+    # usage: <spellbook|sb> <name> [add|remove] <title>
+    # automatically saved to json when done adding
+    try:
+        file_handle = open(os.getcwd() + f'/data/{fields[1]}.json')
+        file_json = json.load(file_handle)
+        file_handle.close()
+        # look at load_json and search_spells to figure out how to read json, add spells, etc.
+    except:
+        print('problem')
+
 # Main entrypoint
 def main():
     # Populate databases
@@ -1073,11 +1084,16 @@ def main():
             elif buffer.startswith('monster'): # Search monsters
                 search_monsters(command_fields, monster_db)
 
+            elif buffer.startswith('spellbook') or buffer.startswith('sb'):
+                manage_spellbook(command_fields, spell_db)
+
             elif buffer.startswith('spell'): # Search spells
                 search_spells(command_fields, spell_db)
 
             else: # No matching command
                 print(f'{command_fields[0]}: command not found\nuse \"help\" for help')
+
+            # TODO: create better directory structure
 
 if __name__ == '__main__':
     main()
