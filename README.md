@@ -1,6 +1,6 @@
 # d&d 5e encounter builder
 
-d&d-5e-encounter-builder is a terminal-based interactive D&D 5E encounter builder and combat tracker written in Python 3. I developed this tool because I could not find an existing combat tracker that would allow me to reroll initiative for all characters every combat round as I think that makes the game more interesting. It current supports features such as encounter save/load, add and bulk add of monsters and presaved encounters, combatant stat editing and display, a spell search system allowing filtering by name, class, level, type, etc. and many more.
+d&d-5e-encounter-builder is a terminal-based interactive D&D 5E encounter builder and combat tracker written in Python 3. I developed this tool because I could not find an existing combat tracker that would allow me to reroll initiative for all characters every combat round as I think that makes the game more interesting. It current supports features such as encounter save/load from json, add and bulk add of monsters and presaved encounters, combatant stat editing and display, a spell search system allowing filtering by name, class, level, type, etc. and many more.
 
 The only dependency is the tabulate table library.
  
